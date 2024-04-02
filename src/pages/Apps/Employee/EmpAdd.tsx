@@ -216,11 +216,7 @@ const CustomAdd: React.FC = () => {
                         {activeTab4 === 2 && <Address />}
 
                         {activeTab4 === 3 && <UploadDocument />}
-                        {/* <p className="mb-5">{activeTab4 === 1 && ' Try the keyboard navigation by clicking arrow left or right!'}</p>
-
-                                    <p className="mb-5">{activeTab4 === 2 && 'The next and previous buttons help you to navigate through your content.'}</p>
-
-                                    <p className="mb-5">{activeTab4 === 3 && 'Wonderful transition effects.'}</p> */}
+     
                     </div>
                     <div className="flex justify-between mt-10 px-10">
                         <button type="button" className={`btn btn-primary ${activeTab4 === 1 ? 'hidden' : ''}`} onClick={() => setActiveTab4(activeTab4 - 1)}>

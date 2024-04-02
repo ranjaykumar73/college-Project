@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import CustomAdd from '../pages/Apps/Invoice/CustomAdd';
 import EmpAdd from '../pages/Apps/Employee/EmpAdd'
+// import Attendance from '../pages/Apps/Attendance/Attendance';
 const Index = lazy(() => import('../pages/Index'));
 const Analytics = lazy(() => import('../pages/Analytics'));
 const Finance = lazy(() => import('../pages/Finance'));
@@ -11,6 +12,7 @@ const Notes = lazy(() => import('../pages/Apps/Notes'));
 const Contacts = lazy(() => import('../pages/Apps/Contacts'));
 const StudentsDetails = lazy(()=>import('../pages/Apps/StudentsDetails'))
 const EmpDetails = lazy(()=>import('../pages/Apps/EmpDetails'))
+const Attendance = lazy(()=>import("../pages/Apps/Attendance/Attendance"))
 const Chat = lazy(() => import('../pages/Apps/Chat'));
 const Scrumboard = lazy(() => import('../pages/Apps/Scrumboard'));
 const Calendar = lazy(() => import('../pages/Apps/Calendar'));
@@ -153,6 +155,10 @@ const routes = [
     {
         path:"/apps/empDetails",
         element:<EmpDetails/>
+    },
+    {
+        path:"apps/attendance",
+        element:<Attendance/>
     },
     {
         path:'/apps/studentsDetails',

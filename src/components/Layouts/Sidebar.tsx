@@ -46,7 +46,7 @@ const Sidebar = () => {
             return oldValue === value ? '' : value;
         });
     };
-    
+
     useEffect(() => {
         const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
         if (selector) {
@@ -130,14 +130,43 @@ const Sidebar = () => {
 
                             <li className="nav-item">
                                 <ul>
-                                    <li className="nav-item">
+                                    <li className="menu nav-item">
+                                        <button type="button" className={`${currentMenu === 'human_resource' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('human_resource')}>
+                                            <div className="flex items-center">
+                                                <IconPeople className="group-hover:!text-primary shrink-0" />
+                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Human Resource')}</span>
+                                            </div>
+
+                                            <div className={currentMenu !== 'human_resource' ? 'rtl:rotate-90 -rotate-90' : ''}>
+                                                <IconCaretDown />
+                                            </div>
+                                        </button>
+
+                                        <AnimateHeight duration={300} height={currentMenu === 'human_resource' ? 'auto' : 0}>
+                                            <ul className="sub-menu text-gray-500">
+                                                <li>
+                                                    <NavLink to="/apps/empdetails">{t('Staff details')}</NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to="/apps/attendance">{t('Attendance')}</NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to="/apps/invoice/add">{t('add')}</NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to="/apps/invoice/edit">{t('edit')}</NavLink>
+                                                </li>
+                                            </ul>
+                                        </AnimateHeight>
+                                    </li>
+                                    {/* <li className="nav-item">
                                         <NavLink to="/apps/empdetails" className="group">
                                             <div className="flex items-center">
                                                 <IconPeople className="group-hover:!text-primary shrink-0" />
                                                 <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Staff details')}</span>
                                             </div>
                                         </NavLink>
-                                    </li>
+                                    </li> */}
                                     <li className="nav-item">
                                         <NavLink to="/apps/chat" className="group">
                                             <div className="flex items-center">

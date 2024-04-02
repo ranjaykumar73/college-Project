@@ -1,9 +1,56 @@
 import { useState } from 'react';
+import * as Yup from 'yup';
+import { Field, Form, Formik } from 'formik';
 import MaskedInput from 'react-text-mask';
 
 const Registration = () => {
+    const SubmittedForm = Yup.object().shape({
+        first_name: Yup.string().required('Please fill the first name'),
+        last_name: Yup.string().required('Please fill the last name'),
+        father_name: Yup.string().required("Please fill the father's name"),
+        mother_name: Yup.string().required("Please fill the mother's name "),
+        gender: Yup.string().required('Please fill the gender'),
+        date_of_birth: Yup.string().required('Please select date of birth'),
+        email: Yup.string().required('Please fill the email address'),
+        phone_number: Yup.string().required('Please fill the Mobile number'),
+        employee_id: Yup.string().required('Please fill the Employee ID '),
+        designation: Yup.string().required('Please fill the Designation'),
+        department: Yup.string().required('Please fill the Department'),
+        religion: Yup.string().required('Please fill the registraion'),
+        category: Yup.string().required('Please fill the category'),
+        cast: Yup.string().required('Please fill the cast'),
+        joining_date: Yup.string().required('Please fill the Joining Date'),
+        marital_status: Yup.string().required('Please fill the Marital Status'),
+        aadhar_number: Yup.string().required('Please fill the Aadhar Number '),
+    });
+
     return (
         <div>
+            <Formik
+            initialValues={{
+                first_name: '',
+                last_name: '',
+                father_name: '',
+                mother_name: '',
+                email: '',
+                date_of_birth: '',
+                phone_number: '',
+                gender: '',
+                employee_id: '',
+                role: '',
+                designation: '',
+                department: '',
+                category: '',
+                religion: '',
+                cast: '',
+                joining_date: '',
+                marital_status: '',
+                aadhar_number: '',
+                
+            }}
+            validationSchema={SubmittedForm}
+                                onSubmit={() => {}}
+            >
             <div className="panel px-0 flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
                 <div className="flex  flex-wrap px-4">
                     <div className="mb-6 lg:w-1/2 w-full">
@@ -137,18 +184,18 @@ const Registration = () => {
                                     </select>
                                 </div>
                                 <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
-                                <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                    <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                         Caste
                                     </label>
                                     <input id="reciever-name" type="text" name="reciever-name" className="form-input flex-1" placeholder="Enter Caste" required />
-                                
+
                                     <label htmlFor="reciever-number" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                         Joining Date
                                     </label>
                                     <input id="reciever-number" type="date" name="reciever-number" className="form-input flex-1" placeholder="Enter Phone number" required />
-                                     </div>
-                                     <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
-                                     <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                </div>
+                                <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
+                                    <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                         Marital Status
                                     </label>
                                     <select className="form-select flex-1" required>
@@ -162,9 +209,21 @@ const Registration = () => {
                                     <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                         Aadhar Number
                                     </label>
-                                    <input id="reciever-name" type="text" name="reciever-name" className="form-input flex-1" placeholder="Enter Aadhar Number" required />
-                               
-                                     </div>
+                                    <MaskedInput
+                                        id="phoneMask"
+                                        type="text"
+                                        placeholder="Enter Phone Number"
+                                        className="form-input flex-1"
+                                        mask={['(', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, ')', ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/]}
+                                        required
+                                    />
+                                </div>
+                                <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
+                                    <label className="ltr:mr-2 rtl:ml-2 w-28  mb-0">Pan Card</label>
+                                    <input id="reciever-name" type="text" name="reciever-name" className="form-input flex-1" placeholder="Enter Caste" required />
+                                    <label className="ltr:mr-2 rtl:ml-2 w-28  mb-0">Upload Photo</label>
+                                    <input type="file" accept="image/png, image/jpeg,.pdf" className="form-input flex-1" />
+                                </div>
                                 {/* <div className="mt-4 flex gap-5  lg:flex-row flex-col">
                                                </div> */}
                                 {/* <hr className="border-white-light dark:border-[#1b2e4b] my-6" /> */}
@@ -192,6 +251,7 @@ const Registration = () => {
                 </form>
                 {/* <hr className="border-white-light dark:border-[#1b2e4b] my-6" /> */}
             </div>
+            </Formik>
         </div>
     );
 };
