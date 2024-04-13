@@ -450,7 +450,6 @@ const SubmittedForm = Yup.object().shape({
                                             <div className={submitCount ? (errors.lastname ? 'has-error' : 'has-success') : ''}>
                                                 <label htmlFor="fullName">Last Name </label>
                                                 <Field name="lastname" type="text" id="lastname" placeholder="Enter Last Name" className="form-input" />
-
                                                 {submitCount ? errors.lastname ? <div className="text-danger mt-1">{errors.lastname}</div> : <div className="text-success mt-1">Looks Good!</div> : ''}
                                             </div>
 

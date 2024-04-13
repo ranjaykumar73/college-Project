@@ -9,8 +9,10 @@ import IconTrashLines from '../../../components/Icon/IconTrashLines';
 import IconPlus from '../../../components/Icon/IconPlus';
 import IconEdit from '../../../components/Icon/IconEdit';
 import IconEye from '../../../components/Icon/IconEye';
+import ModalApplyLeave from './ModalApplyLeave';
+import ModalApplyLeavereq from './ModalApplyLeavereq';
 
-const EmpList = () => {
+const ApproveLeave = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Invoice List'));
@@ -20,123 +22,157 @@ const EmpList = () => {
             id: 1,
             invoice: '081451',
             name: 'Laurie Fox',
+            leave_type:'sick Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'lauriefox@company.com',
-            date: '15 Dec 2020',
-            phone: '9852463851',
-            status: { tooltip: 'BBA', color: 'success' },
+            apply_date: '15 Dec 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 2,
             invoice: '081452',
             name: 'Alexander Gray',
+            leave_type:'casual Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'alexGray3188@gmail.com',
-            date: '20 Dec 2020',
-            phone: '9852463851',
-            status: { tooltip: 'BBA', color: 'success' },
+            apply_date: '20 Dec 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 3,
             invoice: '081681',
             name: 'James Taylor',
+            leave_type:'sick Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'jamestaylor468@gmail.com',
-            date: '27 Dec 2020',
-            phone: '9852463851',
-            status: { tooltip: 'BCA', color: 'success' },
+            apply_date: '27 Dec 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 4,
             invoice: '082693',
             name: 'Grace Roberts',
+            leave_type:'sick Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'graceRoberts@company.com',
-            date: '31 Dec 2020',
-            phone: '9852463851',
-            status: { tooltip: 'B.TECH', color: 'success' },
+            apply_date: '31 Dec 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 5,
             invoice: '084743',
             name: 'Donna Rogers',
+
+            leave_type:'Meternity Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'donnaRogers@hotmail.com',
-            date: '03 Jan 2021',
-            phone: '9852463851',
-            status: { tooltip: 'B.com', color: 'success' },
+            apply_date: '03 Jan 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 6,
             invoice: '086643',
             name: 'Amy Diaz',
+            leave_type:'Meternity Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'amy968@gmail.com',
-            date: '14 Jan 2020',
-            phone: '9852463851',
-            status: { tooltip: 'B.sc', color: 'success' },
+            apply_date: '14 Jan 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 7,
             invoice: '086773',
             name: 'Nia Hillyer',
+            leave_type:'casual Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'niahillyer666@comapny.com',
-            date: '20 Jan 2021',
-            phone: '9852463851',
-            status: { tooltip: 'MBA', color: 'success' },
+            apply_date: '20 Jan 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 8,
             invoice: '087916',
             name: 'Mary McDonald',
+            leave_type:'Meternity Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'maryDonald007@gamil.com',
-            date: '25 Jan 2021',
-            phone: '9852463851',
-            status: { tooltip: 'DIPLOMA', color: 'success' },
+            apply_date: '25 Jan 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 9,
             invoice: '089472',
-            role:'Teacher',
             name: 'Andy King',
+            leave_type:'Meternity Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'kingandy07@company.com',
-            date: '28 Jan 2021',
-            phone: '9852463851',
-            status: { tooltip: 'BCA', color: 'success' },
+            apply_date: '28 Jan 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 10,
             invoice: '091768',
-            role:'Admin',
             name: 'Vincent Carpenter',
+            leave_type:'Medical  Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'vincentcarpenter@gmail.com',
-            date: '30 Jan 2021',
-            phone: '7479407010',
-            status: { tooltip: 'MCA', color: 'success' },
+            apply_date: '30 Jan 2021',
+            amount: '7479407010',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 11,
             invoice: '095841',
-            role:'Admin',
             name: 'Kelly Young',
+            leave_type:'casual Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'youngkelly@hotmail.com',
-            date: '06 Feb 2021',
-            phone: '9852463851',
-            status: { tooltip: 'B.TECH', color: 'success' },
+            apply_date: '06 Feb 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 12,
             invoice: '098424',
             name: 'Alma Clarke',
+            leave_type:'sick Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'alma.clarke@gmail.com',
-            date: '10 Feb 2021',
-            phone: '9852463851',
-            status: { tooltip: 'MBA', color: 'success' },
+            apply_date: '10 Feb 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
     ]);
@@ -171,6 +207,7 @@ const EmpList = () => {
     const [initialRecords, setInitialRecords] = useState(sortBy(items, 'invoice'));
     const [records, setRecords] = useState(initialRecords);
     const [selectedRecords, setSelectedRecords] = useState<any>([]);
+    const [modal5, setModal5] = useState<boolean>(false);
 
     const [search, setSearch] = useState('');
     const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
@@ -196,8 +233,9 @@ const EmpList = () => {
                     item.invoice.toLowerCase().includes(search.toLowerCase()) ||
                     item.name.toLowerCase().includes(search.toLowerCase()) ||
                     item.email.toLowerCase().includes(search.toLowerCase()) ||
-                    item.date.toLowerCase().includes(search.toLowerCase()) ||
-                    item.role?.toLowerCase().includes(search.toLowerCase())||
+                    item.apply_date.toLowerCase().includes(search.toLowerCase()) ||
+                    item.leave_type.toLowerCase().includes(search.toLowerCase()) ||
+                    item.amount.toLowerCase().includes(search.toLowerCase()) ||
                     item.status.tooltip.toLowerCase().includes(search.toLowerCase())
                 );
             });
@@ -219,10 +257,11 @@ const EmpList = () => {
                             <IconTrashLines />
                             Delete
                         </button> */}
-                        <Link to="/app/employee/empadd" className="btn btn-primary gap-2">
+                        <div onClick={()=> setModal5(true)} className="btn btn-primary gap-2 cursor-pointer">
                             <IconPlus />
-                            Add Staff
-                        </Link>
+                            Add Leave Request
+                        </div>
+                        <ModalApplyLeavereq modal5={modal5} setModal5={setModal5}/>
                     </div>
                     <div className="ltr:ml-auto rtl:mr-auto">
                         <input type="text" className="form-input w-auto" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
@@ -234,15 +273,15 @@ const EmpList = () => {
                         className="whitespace-nowrap table-hover invoice-table"
                         records={records}
                         columns={[
-                            {
-                                accessor: 'Emp id',
-                                sortable: true,
-                                render: ({ invoice }) => (
-                                    <NavLink to="/apps/invoice/preview">
-                                        <div className="text-primary underline hover:no-underline font-semibold">{`${invoice}`}</div>
-                                    </NavLink>
-                                ),
-                            },
+                            // {
+                            //     accessor: 'Emp id',
+                            //     sortable: true,
+                            //     render: ({ invoice }) => (
+                            //         <NavLink to="/apps/invoice/preview">
+                            //             <div className="text-primary underline hover:no-underline font-semibold">{`${invoice}`}</div>
+                            //         </NavLink>
+                            //     ),
+                            // },
                             {
                                 accessor: 'name',
                                 sortable: true,
@@ -256,25 +295,49 @@ const EmpList = () => {
                                 ),
                             },
                             {
-                                accessor: 'email',
+                                accessor: 'leave type',
                                 sortable: true,
+                                render:({leave_type})=>(
+                                    <div>
+                                        <div>{leave_type}</div>
+                                    </div>
+                                )
                             },
                             {
-                                accessor: 'role',
+                                accessor: 'leave Date',
                                 sortable: true,
+                                render:({leave_date})=>(
+                                    <div>
+                                        <div>{leave_date}</div>
+                                    </div>
+                                )
                             },
                             {
-                                accessor: 'date',
+                                accessor: 'Days',
                                 sortable: true,
+                                render:({days})=>(
+                                    <div>
+                                        <div>{days}</div>
+                                    </div>
+                                )
                             },
                             {
-                                accessor: 'Phone ',
+                                accessor: 'Apply date',
                                 sortable: true,
-                                titleClassName: 'text-right',
-                                render: ({ phone, id }) => <div className="text-right font-semibold">{`${phone}`}</div>,
+                                render:({apply_date})=>(
+                                    <div>
+                                        <div>{apply_date}</div>
+                                    </div>
+                                )
                             },
+                            // {
+                            //     accessor: 'Phone ',
+                            //     sortable: true,
+                            //     titleClassName: 'text-right',
+                            //     render: ({ amount, id }) => <div className="text-right font-semibold">{`${amount}`}</div>,
+                            // },
                             {
-                                accessor: 'department',
+                                accessor: 'status',
                                 sortable: true,
                                 render: ({ status }) => <span className={`badge badge-outline-${status.color} `}>{status.tooltip}</span>,
                             },
@@ -285,12 +348,12 @@ const EmpList = () => {
                                 textAlignment: 'center',
                                 render: ({ id }) => (
                                     <div className="flex gap-4 items-center w-max mx-auto">
-                                        <NavLink to="/" className="flex hover:text-info">
+                                        <NavLink to="/apps/invoice/edit" className="flex hover:text-info">
                                             <IconEdit className="w-4.5 h-4.5" />
                                         </NavLink>
-                                        <NavLink to="/" className="flex hover:text-primary">
+                                        {/* <NavLink to="/apps/invoice/preview" className="flex hover:text-primary">
                                             <IconEye />
-                                        </NavLink>
+                                        </NavLink> */}
                                         {/* <NavLink to="" className="flex"> */}
                                         <button type="button" className="flex hover:text-danger" onClick={(e) => deleteRow(id)}>
                                             <IconTrashLines />
@@ -319,7 +382,7 @@ const EmpList = () => {
     );
 };
 
-export default EmpList;
+export default ApproveLeave;
 
 // https://www.jotform.com/form-templates/student-registration-form
 // https://www.jotform.com/form-templates/alumni-registration-form

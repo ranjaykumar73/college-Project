@@ -20,6 +20,8 @@ import IconLock from '../../components/Icon/IconLock';
 import IconFacebook from '../../components/Icon/IconFacebook';
 import IconGithub from '../../components/Icon/IconGithub';
 import IconCaretDown from '../../components/Icon/IconCaretDown';
+import LeaveReqForm from '../Apps/ApproveLeave/LeaveReqForm';
+
 
 const Modals = () => {
     const dispatch = useDispatch();

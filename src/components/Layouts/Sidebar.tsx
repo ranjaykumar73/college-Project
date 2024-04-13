@@ -148,14 +148,27 @@ const Sidebar = () => {
                                                     <NavLink to="/apps/empdetails">{t('Staff details')}</NavLink>
                                                 </li>
                                                 <li>
-                                                    <NavLink to="/apps/attendance">{t('Attendance')}</NavLink>
+                                                    <NavLink to="/apps/attendance">{t('Staff Attendance')}</NavLink>
                                                 </li>
                                                 <li>
-                                                    <NavLink to="/apps/invoice/add">{t('add')}</NavLink>
+                                                    <NavLink to="/apps/department">{t('Department')}</NavLink>
                                                 </li>
                                                 <li>
-                                                    <NavLink to="/apps/invoice/edit">{t('edit')}</NavLink>
+                                                    <NavLink to="/apps/designation">{t('Designation')}</NavLink>
                                                 </li>
+                                                <li>
+                                                    <NavLink to="/apps/approveleave/request">{t('Approve Leave Request')}</NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to="/apps/applyleave">{t('Apply Leave')}</NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to="/apps/leavetype">{t('Leave Type')}</NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to="/apps/teachersrating">{t('Teachers Rating')}</NavLink>
+                                                </li>
+                                                
                                             </ul>
                                         </AnimateHeight>
                                     </li>

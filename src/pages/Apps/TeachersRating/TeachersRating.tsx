@@ -9,8 +9,10 @@ import IconTrashLines from '../../../components/Icon/IconTrashLines';
 import IconPlus from '../../../components/Icon/IconPlus';
 import IconEdit from '../../../components/Icon/IconEdit';
 import IconEye from '../../../components/Icon/IconEye';
+import IconStar from '../../../components/Icon/IconStar';
 
-const EmpList = () => {
+
+const TeachersRating = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Invoice List'));
@@ -20,123 +22,180 @@ const EmpList = () => {
             id: 1,
             invoice: '081451',
             name: 'Laurie Fox',
+            student_name:"Lalit",
+            comment:"Motivates students to progress",
+            leave_type:'sick Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'lauriefox@company.com',
-            date: '15 Dec 2020',
-            phone: '9852463851',
-            status: { tooltip: 'BBA', color: 'success' },
+            apply_date: '15 Dec 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 2,
             invoice: '081452',
             name: 'Alexander Gray',
+            student_name:"ranjay",
+            comment:"good",
+            leave_type:'casual Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'alexGray3188@gmail.com',
-            date: '20 Dec 2020',
-            phone: '9852463851',
-            status: { tooltip: 'BBA', color: 'success' },
+            apply_date: '20 Dec 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 3,
             invoice: '081681',
             name: 'James Taylor',
+            student_name:"Arvind",
+            comment:'	Excellent',
+            leave_type:'sick Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'jamestaylor468@gmail.com',
-            date: '27 Dec 2020',
-            phone: '9852463851',
-            status: { tooltip: 'BCA', color: 'success' },
+            apply_date: '27 Dec 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 4,
             invoice: '082693',
             name: 'Grace Roberts',
+            student_name:"Rahul",
+            comment:'Solidifies a positive relationship or connection with your students',
+            leave_type:'sick Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'graceRoberts@company.com',
-            date: '31 Dec 2020',
-            phone: '9852463851',
-            status: { tooltip: 'B.TECH', color: 'success' },
+            apply_date: '31 Dec 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 5,
             invoice: '084743',
             name: 'Donna Rogers',
+            student_name:"Suraj",
+            comment:'	good team teacher learning and best regards',
+            leave_type:'Meternity Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'donnaRogers@hotmail.com',
-            date: '03 Jan 2021',
-            phone: '9852463851',
-            status: { tooltip: 'B.com', color: 'success' },
+            apply_date: '03 Jan 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 6,
             invoice: '086643',
             name: 'Amy Diaz',
+            student_name:"Suraj Sharma",
+            comment:'	good team teacher learning and best regards',
+            leave_type:'Meternity Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'amy968@gmail.com',
-            date: '14 Jan 2020',
-            phone: '9852463851',
-            status: { tooltip: 'B.sc', color: 'success' },
+            apply_date: '14 Jan 2020',
+            amount: '9852463851',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 7,
             invoice: '086773',
             name: 'Nia Hillyer',
+            student_name:"Suraj Sharma",
+            comment:'	good team teacher learning and best regards',
+            leave_type:'casual Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'niahillyer666@comapny.com',
-            date: '20 Jan 2021',
-            phone: '9852463851',
-            status: { tooltip: 'MBA', color: 'success' },
+            apply_date: '20 Jan 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 8,
             invoice: '087916',
             name: 'Mary McDonald',
+            student_name:"Suraj Sharma",
+            comment:'	good team teacher learning and best regards',
+            leave_type:'Meternity Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'maryDonald007@gamil.com',
-            date: '25 Jan 2021',
-            phone: '9852463851',
-            status: { tooltip: 'DIPLOMA', color: 'success' },
+            apply_date: '25 Jan 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 9,
             invoice: '089472',
-            role:'Teacher',
             name: 'Andy King',
+            student_name:"Suraj Sharma",
+            comment:'	good team teacher learning and best regards',
+            leave_type:'Meternity Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'kingandy07@company.com',
-            date: '28 Jan 2021',
-            phone: '9852463851',
-            status: { tooltip: 'BCA', color: 'success' },
+            apply_date: '28 Jan 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 10,
             invoice: '091768',
-            role:'Admin',
             name: 'Vincent Carpenter',
+            student_name:"Suraj Sharma",
+            comment:'	good team teacher learning and best regards',
+            leave_type:'Medical  Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'vincentcarpenter@gmail.com',
-            date: '30 Jan 2021',
-            phone: '7479407010',
-            status: { tooltip: 'MCA', color: 'success' },
+            apply_date: '30 Jan 2021',
+            amount: '7479407010',
+            status: { tooltip: 'Pending', color: 'danger' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 11,
             invoice: '095841',
-            role:'Admin',
             name: 'Kelly Young',
+            student_name:"Suraj Sharma",
+            comment:'	good team teacher learning and best regards',
+            leave_type:'casual Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'youngkelly@hotmail.com',
-            date: '06 Feb 2021',
-            phone: '9852463851',
-            status: { tooltip: 'B.TECH', color: 'success' },
+            apply_date: '06 Feb 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
         {
             id: 12,
             invoice: '098424',
             name: 'Alma Clarke',
+            student_name:"Suraj Sharma",
+            comment:'	good team teacher learning and best regards',
+            leave_type:'sick Leave',
+            leave_date:'15 april 2024 - 18 april 2024',
+            days:'4',
             email: 'alma.clarke@gmail.com',
-            date: '10 Feb 2021',
-            phone: '9852463851',
-            status: { tooltip: 'MBA', color: 'success' },
+            apply_date: '10 Feb 2021',
+            amount: '9852463851',
+            status: { tooltip: 'Approve', color: 'success' },
             profile: 'profile-1.jpeg',
         },
     ]);
@@ -171,6 +230,7 @@ const EmpList = () => {
     const [initialRecords, setInitialRecords] = useState(sortBy(items, 'invoice'));
     const [records, setRecords] = useState(initialRecords);
     const [selectedRecords, setSelectedRecords] = useState<any>([]);
+    
 
     const [search, setSearch] = useState('');
     const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
@@ -196,8 +256,9 @@ const EmpList = () => {
                     item.invoice.toLowerCase().includes(search.toLowerCase()) ||
                     item.name.toLowerCase().includes(search.toLowerCase()) ||
                     item.email.toLowerCase().includes(search.toLowerCase()) ||
-                    item.date.toLowerCase().includes(search.toLowerCase()) ||
-                    item.role?.toLowerCase().includes(search.toLowerCase())||
+                    item.apply_date.toLowerCase().includes(search.toLowerCase()) ||
+                    item.leave_type.toLowerCase().includes(search.toLowerCase()) ||
+                    item.amount.toLowerCase().includes(search.toLowerCase()) ||
                     item.status.tooltip.toLowerCase().includes(search.toLowerCase())
                 );
             });
@@ -209,7 +270,9 @@ const EmpList = () => {
         setRecords(sortStatus.direction === 'desc' ? data2.reverse() : data2);
         setPage(1);
     }, [sortStatus]);
-
+    const getRandomNumber = (min: number, max: number) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
     return (
         <div className="panel px-0 border-white-light dark:border-[#1b2e4b]">
             <div className="invoice-table">
@@ -219,10 +282,11 @@ const EmpList = () => {
                             <IconTrashLines />
                             Delete
                         </button> */}
-                        <Link to="/app/employee/empadd" className="btn btn-primary gap-2">
+                        {/* <div  className="btn btn-primary gap-2 cursor-pointer">
                             <IconPlus />
-                            Add Staff
-                        </Link>
+                            Add Leave Request
+                        </div> */}
+                       
                     </div>
                     <div className="ltr:ml-auto rtl:mr-auto">
                         <input type="text" className="form-input w-auto" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
@@ -256,27 +320,59 @@ const EmpList = () => {
                                 ),
                             },
                             {
-                                accessor: 'email',
-                                sortable: true,
+                                accessor: 'rating',
+                                title: 'Rate',
+                                titleClassName: '!text-center',
+                                render: ({ id }) => (
+                                    <div className="flex items-center justify-center text-warning">
+                                        {Array.from(Array(getRandomNumber(1, 5)).keys()).map((i) => {
+                                            return <IconStar key={i + id} className=" fill-warning" />;
+                                        })}
+                                    </div>
+                                ),
                             },
                             {
-                                accessor: 'role',
+                                accessor: 'Comment',
                                 sortable: true,
+                                render:({comment})=>(
+                                    <div>
+                                        <div>{comment}</div>
+                                    </div>
+                                )
                             },
+                            // {
+                            //     accessor: 'Days',
+                            //     sortable: true,
+                            //     render:({days})=>(
+                            //         <div>
+                            //             <div>{days}</div>
+                            //         </div>
+                            //     )
+                            // },
+                            // {
+                            //     accessor: 'Apply date',
+                            //     sortable: true,
+                            //     render:({apply_date})=>(
+                            //         <div>
+                            //             <div>{apply_date}</div>
+                            //         </div>
+                            //     )
+                            // },
+                            // {
+                            //     accessor: 'Phone ',
+                            //     sortable: true,
+                            //     titleClassName: 'text-right',
+                            //     render: ({ amount, id }) => <div className="text-right font-semibold">{`${amount}`}</div>,
+                            // },
                             {
-                                accessor: 'date',
-                                sortable: true,
-                            },
-                            {
-                                accessor: 'Phone ',
-                                sortable: true,
-                                titleClassName: 'text-right',
-                                render: ({ phone, id }) => <div className="text-right font-semibold">{`${phone}`}</div>,
-                            },
-                            {
-                                accessor: 'department',
+                                accessor: 'status',
                                 sortable: true,
                                 render: ({ status }) => <span className={`badge badge-outline-${status.color} `}>{status.tooltip}</span>,
+                            },
+                            {
+                                accessor: 'Student name',
+                                sortable: true,
+                                render: ({ student_name }) => <div>{student_name}</div>,
                             },
                             {
                                 accessor: 'action',
@@ -285,12 +381,12 @@ const EmpList = () => {
                                 textAlignment: 'center',
                                 render: ({ id }) => (
                                     <div className="flex gap-4 items-center w-max mx-auto">
-                                        <NavLink to="/" className="flex hover:text-info">
+                                        <NavLink to="/apps/invoice/edit" className="flex hover:text-info">
                                             <IconEdit className="w-4.5 h-4.5" />
                                         </NavLink>
-                                        <NavLink to="/" className="flex hover:text-primary">
+                                        {/* <NavLink to="/apps/invoice/preview" className="flex hover:text-primary">
                                             <IconEye />
-                                        </NavLink>
+                                        </NavLink> */}
                                         {/* <NavLink to="" className="flex"> */}
                                         <button type="button" className="flex hover:text-danger" onClick={(e) => deleteRow(id)}>
                                             <IconTrashLines />
@@ -319,7 +415,21 @@ const EmpList = () => {
     );
 };
 
-export default EmpList;
+export default TeachersRating;
 
 // https://www.jotform.com/form-templates/student-registration-form
 // https://www.jotform.com/form-templates/alumni-registration-form
+
+
+
+
+// import React from 'react'
+
+// const TeachersRating = () => {
+//   return (
+//   <>
+//   </>
+//   )
+// }
+
+// export default TeachersRating

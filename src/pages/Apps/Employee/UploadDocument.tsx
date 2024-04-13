@@ -1,6 +1,12 @@
 import React from 'react';
 
-const UploadDocument = () => {
+const UploadDocument = ({nextHandler, backHandler}) => {
+
+
+    function submitForm(){
+        alert('submitting....')
+        nextHandler();
+    }
     return <div>
         <div className="panel px-0 flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
                                 <div className="flex justify-between flex-wrap px-4">
@@ -53,6 +59,18 @@ const UploadDocument = () => {
 
                                 <hr className="border-white-light dark:border-[#1b2e4b] my-6" />
                             </div>
+                            <div className="flex justify-between mt-10 px-10">
+                        <button type="button" className={`btn btn-primary`} onClick={backHandler}>
+                            Back
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-primary ltr:ml-auto rtl:mr-auto"
+                            onClick={submitForm}
+                        >
+                            {'Next'}
+                        </button>   
+                    </div>
     </div>;
 };
 
