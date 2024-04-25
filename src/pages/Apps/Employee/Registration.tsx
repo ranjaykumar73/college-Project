@@ -26,7 +26,7 @@ interface FormValues {
     upload_photo: string;
 }
 const Registration = ({ nextHandler }) => {
-    const [isFormValid, setIsFormValid] = useState(false);
+    // const [isFormValid, setIsFormValid] = useState(false);
     const SubmittedForm = Yup.object().shape({
         first_name: Yup.string().required('Please fill the first name'),
         last_name: Yup.string().required('Please fill the last name'),
@@ -36,7 +36,7 @@ const Registration = ({ nextHandler }) => {
         date_of_birth: Yup.string().required('Please select date of birth'),
         email: Yup.string().email('Invalid Email').required('Please fill the email address'),
         phone_number: Yup.string()
-            .matches(/^\d{10}$/, 'Phone number must be exactly 10 digits')
+            .matches(/^\(\d{3}\)\s\d{3}\s\d{4}$/, 'Phone number must be exactly 10 digits')
             .required('Please fill the Mobile number'),
         employee_id: Yup.number().required('Please fill the Employee ID '),
         role: Yup.string().required('Please fill the Role'),
@@ -47,26 +47,18 @@ const Registration = ({ nextHandler }) => {
         caste: Yup.string().required('Please fill the caste'),
         joining_date: Yup.string().required('Please fill the Joining Date'),
         marital_status: Yup.string().required('Please Select the Marital Status'),
-        aadhar_number: Yup.string().matches(/^\d{12}$/, 'Aadhar number must be exactly 12 digits').required('Please fill the Aadhar Number'),
-        pan_card: Yup.string().matches(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/, 'Invalid Pan Card').required('Please fill the PAN Number'),
-        upload_photo: Yup.string().required('Please Select file '),
+        aadhar_number: Yup.string()
+            .matches(/^\d{4}\s\d{4}\s\d{4}$/, 'Aadhar number must be exactly 12 digits')
+            .required('Please fill the Aadhar Number'),
+        pan_card: Yup.string()
+            .matches(/^[A-Z0-9]{10}$/, 'Invalid Pan Card')
+            .required('Please fill the PAN Number'),
+        upload_photo: Yup.mixed().required('Please Select file '),
     });
 
     // Function to handle form submission
-    const handleSubmit = (values: FormValues) => {
-        // Handle form submission, e.g., send data to server
-            if(SubmittedForm){
-
-            }
-        // alert('submitting');
-        // if (isFormValid) {
-        //     alert('valid form');
-        // } else {
-        //     alert('invalid form');
-        // }
-        // console.log(values);
-        // Reset the form after submission
-        // resetForm();
+    const handleSubmit = (values: FormValues ) => {
+        alert('submitting....')
         nextHandler();
     };
 
@@ -99,20 +91,15 @@ const Registration = ({ nextHandler }) => {
         >
             {({ errors, submitCount, touched, isValid }) => {
                 // setIsFormValid(isValid);
-                if(isValid !== isFormValid){
-                    setIsFormValid(isValid)
-                }
+                // if(isValid !== isFormValid){
+                //     setIsFormValid(isValid)
+                // }
                 return (
                     <Form>
                         <div className="panel px-0 flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
                             <div className="flex  flex-wrap px-4">
                                 <div className="mb-6 lg:w-1/2 w-full">
                                     <div className="text-primary text-xl font-bold">Staff Registration Form</div>
-                                    {/* <button onClick={() => {
-                    if (touched.first_name && !errors.first_name) {
-                        
-                    }
-                }} className='bg-blue-400 px-2'>Submit</button> */}
                                 </div>
                             </div>
                             <hr className="border-white-light dark:border-[#1b2e4b] my-6" />
@@ -125,7 +112,7 @@ const Registration = ({ nextHandler }) => {
                                                 First Name
                                             </label>
                                             <div className=" flex-1 ">
-                                                <Field id="first_name" type="text" name="first_name" className="form-input flex-1 " placeholder="Enter First Name" required />
+                                                <Field  id="first_name" type="text" name="first_name" className="form-input flex-1 " placeholder="Enter First Name" />
 
                                                 <ErrorMessage name="first_name" render={(msg) => <div className="text-red-500">{msg}</div>} />
                                             </div>
@@ -165,18 +152,23 @@ const Registration = ({ nextHandler }) => {
                                             <label htmlFor="phone_number" className="ltr:mr-2 rtl:ml-2 w-28 mb-0">
                                                 Phone Number
                                             </label>
-                                            <div className='flex-1'>
-                                    <MaskedInput    
-                                        id="phone_number"
-                                        type="text"
-                                        name='phone_number'
-                                        placeholder="Enter Phone Number"
-                                        className="form-input flex-1"
-                                        mask={['(', /[0-9]/, /[0-9]/, /[0-9]/, ')', ' ', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/]}
-                                        required
-                                    />
-                                     <ErrorMessage name="phone_number"  render={(msg) => <div className="text-red-500">{msg}</div>} />  
-                                    </div>
+                                            <div className=" flex-1">
+                                                <Field
+                                                    id="phone_number"
+                                                    type="text"
+                                                    name="phone_number"
+                                                  
+                                                    render={({ field }) => (
+                                                        <MaskedInput
+                                                            {...field}
+                                                            className="form-input"
+                                                            placeholder="Enter Phone Number"
+                                                            mask={['(', /[0-9]/, /[0-9]/, /[0-9]/, ')', ' ', /[0-9]/, /[0-9]/, /[0-9]/, ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/]}
+                                                        />
+                                                    )}
+                                                />
+                                                <ErrorMessage name="phone_number" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                            </div>
                                         </div>
                                         <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
                                             <label htmlFor="gender" className=' className="ltr:mr-2 rtl:ml-2 w-28  mb-0"'>
@@ -314,21 +306,25 @@ const Registration = ({ nextHandler }) => {
                                                 </Field>
                                                 <ErrorMessage name="marital_status" render={(msg) => <div className="text-red-500">{msg}</div>} />
                                             </div>
-                                            <label htmlFor="aadhar_number" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                            <label htmlFor="aadhar_number" className="ltr:mr-2 rtl:ml-2 w-28 mb-0">
                                                 Aadhar Number
                                             </label>
-                                            <div className='flex-1'>
-                                    <MaskedInput
-                                        id="aadhar_number"
-                                        type="text"
-                                        name='aadhar_number'
-                                        placeholder="Enter Phone Number"
-                                        className="form-input flex-1"
-                                        mask={['(', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, ')', ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/]}
-                                        required
-                                    />
-                                     <ErrorMessage name="aadhar_number"  render={(msg) => <div className="text-red-500">{msg}</div>} />  
-                                    </div>
+                                            <div className="flex-1">
+                                                <Field
+                                                    id="aadhar_number"
+                                                    type="text"
+                                                    name="aadhar_number"
+                                                    placeholder="Enter Aadhar Number"
+                                                    className="form-input flex-1"
+                                                    render={({ field }) => (
+                                                        <MaskedInput
+                                                            {...field}
+                                                            className='form-input'  placeholder="Enter Aadhar Number"  mask={[ /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/]}
+                                                        />
+                                                    )}
+                                                />
+                                                <ErrorMessage name="aadhar_number" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                            </div>
                                         </div>
                                         <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
                                             <label htmlFor="pan_card" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">

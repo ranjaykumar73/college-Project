@@ -5,6 +5,10 @@ import ApplyLeave from '../pages/Apps/ApproveLeave/ApplyLeave';
 import ApplyLeaveForm from '../pages/Apps/ApproveLeave/ApplyLeaveForm'
 import TeachersRating from '../pages/Apps/TeachersRating/TeachersRating';
 
+import Payroll from '../pages/Apps/Payroll/Payroll';
+
+import EmpPreview from '../pages/Apps/Employee/EmpPreview';
+
 
 // import LeaveReqForm from '../pages/Apps/ApproveLeave/LeaveReqForm';
 // import ApproveLeave from '../pages/Apps/ApproveLeave/ApproveLeave';
@@ -187,6 +191,9 @@ const routes = [
         path:'apps/designation',
         element:<Designation/>
     },
+    {   path:"apps/emppreview",
+        element:<EmpPreview/>
+    },
     // leave
     {
         path:'apps/leavetype',
@@ -214,6 +221,10 @@ const routes = [
         element:<TeachersRating/>
     }
     ,
+    //payroll
+    {path:"apps/payroll",
+        element:<Payroll/>
+    },
     {
         path: '/apps/chat',
         element: <Chat />,

@@ -9,6 +9,8 @@ import IconTrashLines from '../../../components/Icon/IconTrashLines';
 import IconPlus from '../../../components/Icon/IconPlus';
 import IconEdit from '../../../components/Icon/IconEdit';
 import IconEye from '../../../components/Icon/IconEye';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const EmpList = () => {
     const dispatch = useDispatch();
@@ -238,7 +240,7 @@ const EmpList = () => {
                                 accessor: 'Emp id',
                                 sortable: true,
                                 render: ({ invoice }) => (
-                                    <NavLink to="/apps/invoice/preview">
+                                    <NavLink to="/apps/emppreview">
                                         <div className="text-primary underline hover:no-underline font-semibold">{`${invoice}`}</div>
                                     </NavLink>
                                 ),
@@ -285,17 +287,23 @@ const EmpList = () => {
                                 textAlignment: 'center',
                                 render: ({ id }) => (
                                     <div className="flex gap-4 items-center w-max mx-auto">
-                                        <NavLink to="/" className="flex hover:text-info">
+                                        <Tippy  content="Edit">
+                                        <NavLink to="" className="flex hover:text-info">
                                             <IconEdit className="w-4.5 h-4.5" />
                                         </NavLink>
-                                        <NavLink to="/" className="flex hover:text-primary">
+                                        </Tippy>
+                                        <Tippy content="Preview">
+                                        <NavLink to="/apps/emppreview" className="flex hover:text-primary">
                                             <IconEye />
                                         </NavLink>
+                                        </Tippy>
+                                        <Tippy content="Delete">
                                         {/* <NavLink to="" className="flex"> */}
                                         <button type="button" className="flex hover:text-danger" onClick={(e) => deleteRow(id)}>
                                             <IconTrashLines />
                                         </button>
                                         {/* </NavLink> */}
+                                        </Tippy>
                                     </div>
                                 ),
                             },

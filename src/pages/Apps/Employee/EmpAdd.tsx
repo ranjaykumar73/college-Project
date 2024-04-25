@@ -6,6 +6,7 @@ import Address from './Address';
 import UploadDocument from './UploadDocument';
 import IconNotesEdit from '../../../components/Icon/IconNotesEdit';
 import IconNotes from '../../../components/Icon/IconNotes';
+import PayrollDeatails from './PayrollDeatails';
 
 const CustomAdd = () => {
 
@@ -33,7 +34,7 @@ const CustomAdd = () => {
                                 <button
                                     type="button"
                                     className={`${activeTab4 === 1 ? '!border-primary !bg-primary text-white' : ''}
-                                                border-[3px] border-[#f3f2ee] bg-white dark:bg-[#253b5c] dark:border-[#1b2e4b] flex justify-center items-center w-16 h-16 rounded-full`}
+                                              ml-2  border-[3px] border-[#f3f2ee] bg-white dark:bg-[#253b5c] dark:border-[#1b2e4b] flex justify-center items-center w-16 h-16 rounded-full`}
                                     onClick={() => setActiveTab4(1)}
                                 >
                                     <IconNotesEdit />
@@ -60,7 +61,7 @@ const CustomAdd = () => {
                                 >
                                     <IconNotes className="w-5 h-5" />
                                 </button>
-                                <span className={`${activeTab4 === 3 ? 'text-primary ' : ''}text-center block mt-2`}>Documents</span>
+                                <span className={`${activeTab4 === 3 ? 'text-primary ' : ''}text-center block mt-2`}>Payroll</span>
                             </li>
 
                             <li className="mx-auto">
@@ -72,14 +73,16 @@ const CustomAdd = () => {
                                 >
                                     <IconThumbUp className="w-5 h-5" />
                                 </button>
-                                <span className={`${activeTab4 === 4 ? 'text-primary ' : ''}text-center block mt-2`}>Success</span>
+                                <span className={`${activeTab4 === 4 ? 'text-primary ' : ''}text-center block mt-2`}>Documents</span>
                             </li>
                         </ul>
                     </div>
                     <div>
                         {activeTab4 === 1 && <Registration nextHandler={nextHandler}/>}
                         {activeTab4 === 2 && <Address nextHandler={nextHandler} backHandler={backHandler}/>}
-                        {activeTab4 === 3 && <UploadDocument nextHandler={nextHandler} backHandler={backHandler}/>}
+                  
+                        {activeTab4 === 3 && <PayrollDeatails nextHandler={nextHandler} backHandler={backHandler}/>}
+                        {activeTab4 === 4 && <UploadDocument nextHandler={nextHandler} backHandler={backHandler}/>}
                     </div>
                     {/* <div className="flex justify-between mt-10 px-10">
                         <button type="button" className={`btn btn-primary ${activeTab4 === 1 ? 'hidden' : ''}`} onClick={() => setActiveTab4(activeTab4 - 1)}>

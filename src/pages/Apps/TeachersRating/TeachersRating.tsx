@@ -10,7 +10,7 @@ import IconPlus from '../../../components/Icon/IconPlus';
 import IconEdit from '../../../components/Icon/IconEdit';
 import IconEye from '../../../components/Icon/IconEye';
 import IconStar from '../../../components/Icon/IconStar';
-
+import Search from '../../Elements/Search';
 
 const TeachersRating = () => {
     const dispatch = useDispatch();
@@ -22,11 +22,11 @@ const TeachersRating = () => {
             id: 1,
             invoice: '081451',
             name: 'Laurie Fox',
-            student_name:"Lalit",
-            comment:"Motivates students to progress",
-            leave_type:'sick Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Lalit',
+            comment: 'Motivates students to progress',
+            leave_type: 'sick Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'lauriefox@company.com',
             apply_date: '15 Dec 2020',
             amount: '9852463851',
@@ -37,11 +37,11 @@ const TeachersRating = () => {
             id: 2,
             invoice: '081452',
             name: 'Alexander Gray',
-            student_name:"ranjay",
-            comment:"good",
-            leave_type:'casual Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'ranjay',
+            comment: 'good',
+            leave_type: 'casual Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'alexGray3188@gmail.com',
             apply_date: '20 Dec 2020',
             amount: '9852463851',
@@ -52,11 +52,11 @@ const TeachersRating = () => {
             id: 3,
             invoice: '081681',
             name: 'James Taylor',
-            student_name:"Arvind",
-            comment:'	Excellent',
-            leave_type:'sick Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Arvind',
+            comment: '	Excellent',
+            leave_type: 'sick Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'jamestaylor468@gmail.com',
             apply_date: '27 Dec 2020',
             amount: '9852463851',
@@ -67,11 +67,11 @@ const TeachersRating = () => {
             id: 4,
             invoice: '082693',
             name: 'Grace Roberts',
-            student_name:"Rahul",
-            comment:'Solidifies a positive relationship or connection with your students',
-            leave_type:'sick Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Rahul',
+            comment: 'Solidifies a positive relationship or connection with your students',
+            leave_type: 'sick Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'graceRoberts@company.com',
             apply_date: '31 Dec 2020',
             amount: '9852463851',
@@ -82,11 +82,11 @@ const TeachersRating = () => {
             id: 5,
             invoice: '084743',
             name: 'Donna Rogers',
-            student_name:"Suraj",
-            comment:'	good team teacher learning and best regards',
-            leave_type:'Meternity Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Suraj',
+            comment: '	good team teacher learning and best regards',
+            leave_type: 'Meternity Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'donnaRogers@hotmail.com',
             apply_date: '03 Jan 2021',
             amount: '9852463851',
@@ -97,11 +97,11 @@ const TeachersRating = () => {
             id: 6,
             invoice: '086643',
             name: 'Amy Diaz',
-            student_name:"Suraj Sharma",
-            comment:'	good team teacher learning and best regards',
-            leave_type:'Meternity Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Suraj Sharma',
+            comment: '	good team teacher learning and best regards',
+            leave_type: 'Meternity Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'amy968@gmail.com',
             apply_date: '14 Jan 2020',
             amount: '9852463851',
@@ -112,11 +112,11 @@ const TeachersRating = () => {
             id: 7,
             invoice: '086773',
             name: 'Nia Hillyer',
-            student_name:"Suraj Sharma",
-            comment:'	good team teacher learning and best regards',
-            leave_type:'casual Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Suraj Sharma',
+            comment: '	good team teacher learning and best regards',
+            leave_type: 'casual Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'niahillyer666@comapny.com',
             apply_date: '20 Jan 2021',
             amount: '9852463851',
@@ -127,11 +127,11 @@ const TeachersRating = () => {
             id: 8,
             invoice: '087916',
             name: 'Mary McDonald',
-            student_name:"Suraj Sharma",
-            comment:'	good team teacher learning and best regards',
-            leave_type:'Meternity Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Suraj Sharma',
+            comment: '	good team teacher learning and best regards',
+            leave_type: 'Meternity Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'maryDonald007@gamil.com',
             apply_date: '25 Jan 2021',
             amount: '9852463851',
@@ -142,11 +142,11 @@ const TeachersRating = () => {
             id: 9,
             invoice: '089472',
             name: 'Andy King',
-            student_name:"Suraj Sharma",
-            comment:'	good team teacher learning and best regards',
-            leave_type:'Meternity Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Suraj Sharma',
+            comment: '	good team teacher learning and best regards',
+            leave_type: 'Meternity Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'kingandy07@company.com',
             apply_date: '28 Jan 2021',
             amount: '9852463851',
@@ -157,11 +157,11 @@ const TeachersRating = () => {
             id: 10,
             invoice: '091768',
             name: 'Vincent Carpenter',
-            student_name:"Suraj Sharma",
-            comment:'	good team teacher learning and best regards',
-            leave_type:'Medical  Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Suraj Sharma',
+            comment: '	good team teacher learning and best regards',
+            leave_type: 'Medical  Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'vincentcarpenter@gmail.com',
             apply_date: '30 Jan 2021',
             amount: '7479407010',
@@ -172,11 +172,11 @@ const TeachersRating = () => {
             id: 11,
             invoice: '095841',
             name: 'Kelly Young',
-            student_name:"Suraj Sharma",
-            comment:'	good team teacher learning and best regards',
-            leave_type:'casual Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Suraj Sharma',
+            comment: '	good team teacher learning and best regards',
+            leave_type: 'casual Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'youngkelly@hotmail.com',
             apply_date: '06 Feb 2021',
             amount: '9852463851',
@@ -187,11 +187,11 @@ const TeachersRating = () => {
             id: 12,
             invoice: '098424',
             name: 'Alma Clarke',
-            student_name:"Suraj Sharma",
-            comment:'	good team teacher learning and best regards',
-            leave_type:'sick Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            student_name: 'Suraj Sharma',
+            comment: '	good team teacher learning and best regards',
+            leave_type: 'sick Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'alma.clarke@gmail.com',
             apply_date: '10 Feb 2021',
             amount: '9852463851',
@@ -230,7 +230,6 @@ const TeachersRating = () => {
     const [initialRecords, setInitialRecords] = useState(sortBy(items, 'invoice'));
     const [records, setRecords] = useState(initialRecords);
     const [selectedRecords, setSelectedRecords] = useState<any>([]);
-    
 
     const [search, setSearch] = useState('');
     const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
@@ -259,6 +258,7 @@ const TeachersRating = () => {
                     item.apply_date.toLowerCase().includes(search.toLowerCase()) ||
                     item.leave_type.toLowerCase().includes(search.toLowerCase()) ||
                     item.amount.toLowerCase().includes(search.toLowerCase()) ||
+                    item.student_name.toLocaleLowerCase().includes(search.toLowerCase()) ||
                     item.status.tooltip.toLowerCase().includes(search.toLowerCase())
                 );
             });
@@ -286,7 +286,6 @@ const TeachersRating = () => {
                             <IconPlus />
                             Add Leave Request
                         </div> */}
-                       
                     </div>
                     <div className="ltr:ml-auto rtl:mr-auto">
                         <input type="text" className="form-input w-auto" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
@@ -334,36 +333,13 @@ const TeachersRating = () => {
                             {
                                 accessor: 'Comment',
                                 sortable: true,
-                                render:({comment})=>(
+                                render: ({ comment }) => (
                                     <div>
                                         <div>{comment}</div>
                                     </div>
-                                )
+                                ),
                             },
-                            // {
-                            //     accessor: 'Days',
-                            //     sortable: true,
-                            //     render:({days})=>(
-                            //         <div>
-                            //             <div>{days}</div>
-                            //         </div>
-                            //     )
-                            // },
-                            // {
-                            //     accessor: 'Apply date',
-                            //     sortable: true,
-                            //     render:({apply_date})=>(
-                            //         <div>
-                            //             <div>{apply_date}</div>
-                            //         </div>
-                            //     )
-                            // },
-                            // {
-                            //     accessor: 'Phone ',
-                            //     sortable: true,
-                            //     titleClassName: 'text-right',
-                            //     render: ({ amount, id }) => <div className="text-right font-semibold">{`${amount}`}</div>,
-                            // },
+
                             {
                                 accessor: 'status',
                                 sortable: true,
@@ -419,17 +395,3 @@ export default TeachersRating;
 
 // https://www.jotform.com/form-templates/student-registration-form
 // https://www.jotform.com/form-templates/alumni-registration-form
-
-
-
-
-// import React from 'react'
-
-// const TeachersRating = () => {
-//   return (
-//   <>
-//   </>
-//   )
-// }
-
-// export default TeachersRating

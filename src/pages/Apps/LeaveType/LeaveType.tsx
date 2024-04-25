@@ -49,7 +49,7 @@ const LeaveType = () => {
     const deleteList = (id: string) => {
         const tempDepartments = LeaveType.filter((element) => element.id !== id);
         setLeaveType(tempDepartments);
-        window.confirm("Delete Confirm?")
+        window.confirm("Are you Sure Delete Confirm?")
     };
 
     return (

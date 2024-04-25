@@ -13,18 +13,18 @@ import ModalApplyLeave from './ModalApplyLeave';
 import { boolean } from 'yup';
 
 const ApplyLeave = () => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(setPageTitle('Invoice List'));
-    });
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch(setPageTitle('Invoice List'));
+    // });
     const [items, setItems] = useState([
         {
             id: 1,
             invoice: '081451',
             name: 'Laurie Fox',
-            leave_type:'sick Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'sick Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'lauriefox@company.com',
             apply_date: '15 Dec 2020',
             amount: '9852463851',
@@ -35,9 +35,9 @@ const ApplyLeave = () => {
             id: 2,
             invoice: '081452',
             name: 'Alexander Gray',
-            leave_type:'casual Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'casual Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'alexGray3188@gmail.com',
             apply_date: '20 Dec 2020',
             amount: '9852463851',
@@ -48,9 +48,9 @@ const ApplyLeave = () => {
             id: 3,
             invoice: '081681',
             name: 'James Taylor',
-            leave_type:'sick Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'sick Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'jamestaylor468@gmail.com',
             apply_date: '27 Dec 2020',
             amount: '9852463851',
@@ -61,9 +61,9 @@ const ApplyLeave = () => {
             id: 4,
             invoice: '082693',
             name: 'Grace Roberts',
-            leave_type:'sick Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'sick Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'graceRoberts@company.com',
             apply_date: '31 Dec 2020',
             amount: '9852463851',
@@ -75,9 +75,9 @@ const ApplyLeave = () => {
             invoice: '084743',
             name: 'Donna Rogers',
 
-            leave_type:'Meternity Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'Meternity Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'donnaRogers@hotmail.com',
             apply_date: '03 Jan 2021',
             amount: '9852463851',
@@ -88,9 +88,9 @@ const ApplyLeave = () => {
             id: 6,
             invoice: '086643',
             name: 'Amy Diaz',
-            leave_type:'Meternity Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'Meternity Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'amy968@gmail.com',
             apply_date: '14 Jan 2020',
             amount: '9852463851',
@@ -101,9 +101,9 @@ const ApplyLeave = () => {
             id: 7,
             invoice: '086773',
             name: 'Nia Hillyer',
-            leave_type:'casual Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'casual Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'niahillyer666@comapny.com',
             apply_date: '20 Jan 2021',
             amount: '9852463851',
@@ -114,9 +114,9 @@ const ApplyLeave = () => {
             id: 8,
             invoice: '087916',
             name: 'Mary McDonald',
-            leave_type:'Meternity Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'Meternity Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'maryDonald007@gamil.com',
             apply_date: '25 Jan 2021',
             amount: '9852463851',
@@ -127,9 +127,9 @@ const ApplyLeave = () => {
             id: 9,
             invoice: '089472',
             name: 'Andy King',
-            leave_type:'Meternity Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'Meternity Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'kingandy07@company.com',
             apply_date: '28 Jan 2021',
             amount: '9852463851',
@@ -140,9 +140,9 @@ const ApplyLeave = () => {
             id: 10,
             invoice: '091768',
             name: 'Vincent Carpenter',
-            leave_type:'Medical  Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'Medical  Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'vincentcarpenter@gmail.com',
             apply_date: '30 Jan 2021',
             amount: '7479407010',
@@ -153,9 +153,9 @@ const ApplyLeave = () => {
             id: 11,
             invoice: '095841',
             name: 'Kelly Young',
-            leave_type:'casual Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'casual Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'youngkelly@hotmail.com',
             apply_date: '06 Feb 2021',
             amount: '9852463851',
@@ -166,9 +166,9 @@ const ApplyLeave = () => {
             id: 12,
             invoice: '098424',
             name: 'Alma Clarke',
-            leave_type:'sick Leave',
-            leave_date:'15 april 2024 - 18 april 2024',
-            days:'4',
+            leave_type: 'sick Leave',
+            leave_date: '15 april 2024 - 18 april 2024',
+            days: '4',
             email: 'alma.clarke@gmail.com',
             apply_date: '10 Feb 2021',
             amount: '9852463851',
@@ -207,7 +207,7 @@ const ApplyLeave = () => {
     const [initialRecords, setInitialRecords] = useState(sortBy(items, 'invoice'));
     const [records, setRecords] = useState(initialRecords);
     const [selectedRecords, setSelectedRecords] = useState<any>([]);
-    const [modal6,setModal6]=useState<boolean>(false)
+    const [modal6, setModal6] = useState<boolean>(false);
     const [search, setSearch] = useState('');
     const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
         columnAccessor: 'firstName',
@@ -259,7 +259,7 @@ const ApplyLeave = () => {
                             <IconPlus />
                             Apply Leave
                         </div>
-                        <ModalApplyLeave modal6={modal6} setModal6={setModal6}/>
+                        <ModalApplyLeave modal6={modal6} setModal6={setModal6} />
                     </div>
                     <div className="ltr:ml-auto rtl:mr-auto">
                         <input type="text" className="form-input w-auto" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
@@ -295,38 +295,38 @@ const ApplyLeave = () => {
                             {
                                 accessor: 'leave type',
                                 sortable: true,
-                                render:({leave_type})=>(
+                                render: ({ leave_type }) => (
                                     <div>
                                         <div>{leave_type}</div>
                                     </div>
-                                )
+                                ),
                             },
                             {
                                 accessor: 'leave Date',
                                 sortable: true,
-                                render:({leave_date})=>(
+                                render: ({ leave_date }) => (
                                     <div>
                                         <div>{leave_date}</div>
                                     </div>
-                                )
+                                ),
                             },
                             {
                                 accessor: 'Days',
                                 sortable: true,
-                                render:({days})=>(
+                                render: ({ days }) => (
                                     <div>
                                         <div>{days}</div>
                                     </div>
-                                )
+                                ),
                             },
                             {
                                 accessor: 'Apply date',
                                 sortable: true,
-                                render:({apply_date})=>(
+                                render: ({ apply_date }) => (
                                     <div>
                                         <div>{apply_date}</div>
                                     </div>
-                                )
+                                ),
                             },
                             // {
                             //     accessor: 'Phone ',
@@ -349,7 +349,7 @@ const ApplyLeave = () => {
                                         {/* <NavLink to="/apps/invoice/edit" className="flex hover:text-info">
                                             <IconEdit className="w-4.5 h-4.5" />
                                         </NavLink> */}
-                                        <NavLink to="/apps/invoice/preview" className="flex hover:text-primary">
+                                        <NavLink to="" className="flex hover:text-primary">
                                             <IconEye />
                                         </NavLink>
                                         {/* <NavLink to="" className="flex"> */}

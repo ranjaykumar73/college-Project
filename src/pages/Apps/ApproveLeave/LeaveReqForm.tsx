@@ -1,154 +1,201 @@
-import { useState } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Field, Form, Formik } from 'formik';
-import MaskedInput from 'react-text-mask';
+import Swal from 'sweetalert2';
 
-const LeaveReqForm = () => {
+const LeaveReqForm = ({ sendDataToAPI ,setModal5}) => {
     const SubmittedForm = Yup.object().shape({
-        first_name: Yup.string().required('Please fill the first name'),
-        last_name: Yup.string().required('Please fill the last name'),
-        father_name: Yup.string().required("Please fill the father's name"),
-        mother_name: Yup.string().required("Please fill the mother's name "),
-        gender: Yup.string().required('Please fill the gender'),
-        date_of_birth: Yup.string().required('Please select date of birth'),
-        email: Yup.string().required('Please fill the email address'),
-        phone_number: Yup.string().required('Please fill the Mobile number'),
-        employee_id: Yup.string().required('Please fill the Employee ID '),
-        designation: Yup.string().required('Please fill the Designation'),
-        department: Yup.string().required('Please fill the Department'),
-        religion: Yup.string().required('Please fill the registraion'),
-        category: Yup.string().required('Please fill the category'),
-        cast: Yup.string().required('Please fill the cast'),
-        joining_date: Yup.string().required('Please fill the Joining Date'),
-        marital_status: Yup.string().required('Please fill the Marital Status'),
-        aadhar_number: Yup.string().required('Please fill the Aadhar Number '),
+        role: Yup.string().required('Please select role'),
+        name: Yup.string().required('Please fill the name'),
+        apply_date: Yup.string().required("Please select Apply date"),
+        leave_type: Yup.string().required("Please select leave type "),
+        leave_form_date: Yup.string().required('Please select date'),
+        leave_to_date: Yup.string().required('Please select date'),
+        reason: Yup.string().required('Please fill valid reason'),
+        note: Yup.string().required('Please fill valid note'),
+        attach_document:Yup.mixed().required('Please Attach document'),
+        status: Yup.string().required('Please select status'),
     });
 
+    const handleOnSubmit = async (values, { resetForm }) => {
+        console.log('Form Data:', values);
+        try {
+            setTimeout(()=>{
+ // Call your API or perform any action with form data here
+            // await sendDataToAPI({ data: values });
+            resetForm(); 
+            setModal5(false)
+            showAlert('success');
+            },1000)
+           
+
+
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            showAlert('error');
+        }
+    };
+
+    const showAlert = (type) => {
+        let title, text;
+        if (type === 'success') {
+            title = 'Good job!';
+            text = 'Form saved successfully!';
+        } else {
+            title = 'Error!';
+            text = 'Failed to save form.';
+        }
+        Swal.fire({
+            icon: type === 'success' ? 'success' : 'error',
+            title,
+            text,
+            padding: '2em',
+            customClass: 'sweet-alerts',
+        });
+    };
+
     return (
-        <div>
+        <div className="">
             <Formik
                 initialValues={{
-                    first_name: '',
-                    last_name: '',
-                    father_name: '',
-                    mother_name: '',
-                    email: '',
-                    date_of_birth: '',
-                    phone_number: '',
-                    gender: '',
-                    employee_id: '',
                     role: '',
-                    designation: '',
-                    department: '',
-                    category: '',
-                    religion: '',
-                    cast: '',
-                    joining_date: '',
-                    marital_status: '',
-                    aadhar_number: '',
+                    name: '',
+                    apply_date: '',
+                    leave_type: '',
+                    leave_form_date: '',
+                    leave_to_date: '',
+                    reason: '',
+                    note: '',
+                    attach_document: null,
+                    status: ''
                 }}
                 validationSchema={SubmittedForm}
-                onSubmit={() => {}}
+                onSubmit={handleOnSubmit}
             >
-                <div className="panel px-0 flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
-                    <div className="flex  flex-wrap px-4">
-                        <div className="mb-6 lg:w-1/2 w-full">
-                            <div className="text-primary text-xl font-bold">Add Details</div>
+                 {({ setFieldValue }) => (
+                <Form>
+                    <div className="panel px-0 flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
+                        <div className="flex flex-wrap px-4">
+                            <div className="mb-6 lg:w-1/2 w-full">
+                                <div className="text-primary text-xl font-bold">Add Details</div>
+                            </div>
                         </div>
-                    </div>
-                    <hr className="border-white-light dark:border-[#1b2e4b] my-1" />
-                    <form>
+                        <hr className="border-white-light dark:border-[#1b2e4b] my-1" />
                         <div className="mt-1 px-4">
                             <div className="flex justify-between lg:flex-row flex-col">
                                 <div className=" w-full ltr:lg:mr-6 rtl:lg:ml-6 mb-6">
-                                
                                     <div className="mt-4 flex gap-5  lg:flex-row flex-col">
-                                        <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                        <label htmlFor=" role" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Role
                                         </label>
-                                        <select className="form-select flex-1" required>
-                                            <option>Select Role </option>
+                                        <div className='flex-1'>
+                                        <Field id='role' name="role" as="select" className="form-select flex-1" required>
+                                            <option>Select Role</option>
                                             <option>Admin</option>
                                             <option>Teacher</option>
                                             <option>Accountant</option>
-                                            <option>Libraian</option>
+                                            <option>Librarian</option>
                                             <option>Receptionist</option>
                                             <option>Super Admin</option>
-                                        </select>
-                                        <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                        </Field>
+                                        <ErrorMessage name="role" className="error-message text-red-500"/>
+                                        </div>
+                                        <label htmlFor="name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Name
                                         </label>
-                                        <input id="reciever-name" type="text" name="reciever-name" className="form-input flex-1" placeholder="Enter Name" required />
+                                        <div className='flex-1'>
+                                        <Field id="name" type="text" name="name" className="form-input flex-1" placeholder="Enter Name" required />
+                                        <ErrorMessage name="name" className="error-message text-red-500"/>
+                                        </div>
                                     </div>
 
                                     <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
-                                        <label htmlFor="reciever-number" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                        <label htmlFor="apply_date" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Apply date
                                         </label>
-                                        <input id="reciever-number" type="date" name="reciever-number" className="form-input flex-1" placeholder="Enter Phone number" required />
-                                        <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                        <div className='flex-1'>
+                                        <Field id="apply_date" type="date" name="apply_date" className="form-input flex-1" placeholder="Enter Apply date" required />
+                                        <ErrorMessage name="apply_date" className="error-message text-red-500"/>
+                                        </div>
+                                        <label htmlFor="leave_type" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Leave Type
                                         </label>
-                                        <select className="form-select flex-1" required>
-                                            <option>Select Leave type </option>
+                                        <div className='flex-1'>
+                                        <Field name="leave_type" as="select" className="form-select flex-1" required>
+                                            <option>Select Leave type</option>
                                             <option>Casual leave</option>
                                             <option>Sick Leave</option>
                                             <option>Meternity Leave</option>
-                                        </select>
+                                        </Field>
+                                        <ErrorMessage name="leave_type" className="error-message text-red-500"/>
+                                        </div>
                                     </div>
+
                                     <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
-                                        <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28 mb-0">
+                                        <label htmlFor="leave_from_date" className="ltr:mr-2 rtl:ml-2 w-28 mb-0">
                                             Leave From Date
                                         </label>
-                                        <input id="reciever-number" type="date" name="reciever-number" className="form-input flex-1" placeholder="Enter Phone number" required />
-
-                                        <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                        <div className='flex-1'>
+                                        <Field id="leave_from_date" type="date" name="leave_form_date" className="form-input flex-1" placeholder="Enter Leave From Date" required />
+                                        <ErrorMessage name="leave_form_date" className="error-message text-red-500"/>
+                                        </div>
+                                        <label htmlFor="leave_to_date" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Leave to Date
                                         </label>
-                                        <input id="reciever-number" type="date" name="reciever-number" className="form-input flex-1" placeholder="Enter Phone number" required />
-
-                                        {/* <input id="reciever-name" type="text" name="reciever-name" className="form-input flex-1" placeholder="Enter your Roll No" /> */}
+                                        <div className='flex-1'>
+                                        <Field id="leave_to_date" type="date" name="leave_to_date" className="form-input flex-1" placeholder="Enter Leave to Date" required />
+                                        <ErrorMessage name="leave_to_date" className="error-message text-red-500"/>
+                                        </div>
                                     </div>
+
                                     <div className="mt-4 flex gap-5  lg:flex-row flex-col">
-                                        <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                        <label htmlFor="reason" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Reason
                                         </label>
-                                        <textarea rows={4} className="form-textarea ltr:rounded-l-none rtl:rounded-r-none"></textarea>
-                                        <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                        <div className='flex-1'>
+                                        <Field id="reason" as="textarea" rows={4} className="form-textarea ltr:rounded-l-none rtl:rounded-r-none" name="reason" placeholder="Enter Reason" required />
+                                        <ErrorMessage name="reason" className="error-message text-red-500" />
+                                        </div>
+                                        <label htmlFor="note" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Note
                                         </label>
-                                        <textarea rows={4} className="form-textarea ltr:rounded-l-none rtl:rounded-r-none"></textarea>
+                                        <div className='flex-1'>
+                                        <Field id="note" as="textarea" rows={4} className="form-textarea ltr:rounded-l-none rtl:rounded-r-none" name="note" placeholder="Enter Note" required />
+                                        <ErrorMessage name="note" className="error-message text-red-500"/>
+                                        </div>
                                     </div>
 
                                     <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
                                         <label className="ltr:mr-2 rtl:ml-2 w-28  mb-0">Attach Document</label>
-                                   
-                                        <input type="file" accept="image/png, image/jpeg,.pdf" className="form-input flex-1 " />
-                                    
-                                        <label className="ltr:mr-2 rtl:ml-2 w-28  mb-0">status</label>
-                                        <div className='
-                                         flex  gap-5 lg:flex-row flex-coln form-input flex-1'>
-                                        <label className="flex items-center cursor-pointer">
-                                            <input type="radio" name="custom_radio2" className="form-radio" defaultChecked />
-                                            <span className="text-white-dark">Pending</span>
-                                        </label>
-                                        <label className="flex items-center cursor-pointer">
-                                            <input type="radio" name="custom_radio2" className="form-radio" defaultChecked />
-                                            <span className="text-white-dark">Approve</span>
-                                        </label>
-                                        <label className="flex items-center cursor-pointer">
-                                            <input type="radio" name="custom_radio2" className="form-radio" defaultChecked />
-                                            <span className="text-white-dark">Disapprove</span>
-                                        </label>
+                                        <div className='flex-1'>
+                                        <input type="file" accept="image/png, image/jpeg,.pdf" name="attach_document" className="form-input flex-1" onChange={(event) => setFieldValue("attach_document", event.currentTarget.files[0])} />
+                                        <ErrorMessage name="attach_document" className="error-message text-red-500"/>
                                         </div>
-                                        {/* <button type="button" className="btn btn-primary ml-[1052px]">Save</button> */}
+                                        <label className="ltr:mr-2 rtl:ml-2 w-28  mb-0">status</label>
+                                            <div className='flex-1'>
+                                        <div className='flex  gap-5 lg:flex-row flex-coln form-input flex-1'>
+                                            <label className="flex items-center cursor-pointer">
+                                                <Field type="radio" name="status" value="pending" className="form-radio" />
+                                                <span className="text-white-dark">Pending</span>
+                                            </label>
+                                            <label className="flex items-center cursor-pointer">
+                                                <Field type="radio" name="status" value="approve" className="form-radio" />
+                                                <span className="text-white-dark">Approve</span>
+                                            </label>
+                                            <label className="flex items-center cursor-pointer">
+                                                <Field type="radio" name="status" value="disapprove" className="form-radio" />
+                                                <span className="text-white-dark">Disapprove</span>
+                                            </label>
+                                        </div>
+                                        <ErrorMessage name="status" className="error-message text-red-500"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                    {/* <hr className="border-white-light dark:border-[#1b2e4b] my-1" /> */}
                         </div>
-                    </form>
-                </div>
+                        <button type="submit"  className="btn btn-primary ml-[845px]">Save</button>
+                    </div>
+                </Form>
+                 )}
             </Formik>
         </div>
     );

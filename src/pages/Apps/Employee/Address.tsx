@@ -1,3 +1,4 @@
+import { Formik } from 'formik';
 import MaskedInput from 'react-text-mask';
 
 const Address = ({nextHandler, backHandler}) => {
@@ -7,6 +8,12 @@ const Address = ({nextHandler, backHandler}) => {
         nextHandler();
     }
     return (
+        <Formik
+        initialValues={{
+            street_address_l1:'',
+            street_address_l2:'',
+        }}
+        >
         <div>
             <div className="panel px-0 flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
                 <div className="flex justify-between flex-wrap px-4">
@@ -21,15 +28,15 @@ const Address = ({nextHandler, backHandler}) => {
                             <div className="text-lg font-bold">Present Address </div>
                             <hr className="border-white-light dark:border-[#1b2e4b] my-6" />
                             <div className="mt-4 flex gap-5  lg:flex-row flex-col">
-                                <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                <label htmlFor="street_address_l1" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                     Street Address
                                 </label>
-                                <input id="reciever-address" type="textarea" name="reciever-address" className="form-input flex-1" placeholder="Enter Street Address line 1" />
+                                <input id="street_address_l1" type="textarea" name="street_address_l1" className="form-input flex-1" placeholder="Enter Street Address line 1" />
 
-                                <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                <label htmlFor="street_address_l2" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                     Street Address
                                 </label>
-                                <input id="reciever-address" type="text" name="reciever-address" className="form-input flex-1" placeholder="Enter Street Address Line 2" />
+                                <input id="street_address_l2" type="text" name="street_address_l2" className="form-input flex-1" placeholder="Enter Street Address Line 2" />
                             </div>
                             <div className="mt-4 flex gap-5  lg:flex-row flex-col">
                                 <label htmlFor="reciever-name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
@@ -987,6 +994,7 @@ const Address = ({nextHandler, backHandler}) => {
                         </button>   
                     </div>
         </div>
+        </Formik>
     );
 };
 

@@ -28,21 +28,21 @@ const ModalApplyLeave = ({modal6, setModal6}) => {
                             >
                                 <Dialog.Panel className="panel my-8 w-full max-w-5xl overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
                                     <div className="flex items-center justify-between bg-[#fbfbfb] px-5 py-3 dark:bg-[#121c2c]">
-                                        <h5 className="text-lg font-bold">Modal Title</h5>
+                                        <h5 className="text-lg font-bold">Apply Leave Form</h5>
                                         <button onClick={() => setModal6(false)} type="button" className="text-white-dark hover:text-dark">
                                             <IconX />
                                         </button>
                                     </div>
                                     <div className="p-5">
-                                        <ApplyLeaveForm/>
-                                        <div className="mt-8 flex items-center justify-end">
+                                        <ApplyLeaveForm setModal6={setModal6}/>
+                                        {/* <div className="mt-8 flex items-center justify-end">
                                             <button onClick={() => setModal6(false)} type="button" className="btn btn-outline-danger">
                                                 Discard
                                             </button>
                                             <button onClick={() => setModal6(false)} type="button" className="btn btn-primary ltr:ml-4 rtl:mr-4">
                                                 Save
                                             </button>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
