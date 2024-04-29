@@ -21,14 +21,14 @@ const ApplyLeaveForm = ({setModal6}) => {
         // Call your API or perform any action with form data here
         setTimeout(() => {
             resetForm(); // Reset form after successful submission
-            showAlert(2); // Show success alert
+            showAlert(1); // Show success alert
            setModal6(false)
 
         }, 1000);
     };
 
     const showAlert = async (type) => {
-        if (type === 2) {
+        if (type === 1) {
             await Swal.fire({
                 icon: 'success',
                 title: 'Good job!',
@@ -74,22 +74,24 @@ const ApplyLeaveForm = ({setModal6}) => {
                                                 Apply date
                                             </label>
                                             <div className='flex-1'>
-                                            <Field id="apply_date" type="date" name="apply_date" className="form-input flex-1" placeholder="Enter Phone number" required />
-                                            <ErrorMessage name="apply_date" component="div" className="error-message text-red-500" />
+                                            <Field id="apply_date" type="date" name="apply_date" className="form-input flex-1" placeholder="Enter Phone number"/>
+                                            {/* <ErrorMessage name="apply_date" component="div" className="error-message text-red-500" /> */}
+                                            <ErrorMessage name="apply_date" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                             </div>
-                                            {/* <ErrorMessage name="first_name" render={(msg) => <div className="text-red-500">{msg}</div>} /> */}
                                             <label htmlFor="available_leave" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                                 Available Leave
                                             </label>
                                             <div className='flex-1'>
-                                            <Field as="select" id='available_leave' className="form-select flex-1" name='available_leave' required>
+                                            <Field as="select" id='available_leave' className="form-select flex-1" name='available_leave'>
                                                 <option>Select Leave type </option>
                                                 <option>Casual leave(2)</option>
                                                 <option>Sick Leave(7)</option>
                                                 <option>Meternity Leave(4)</option>
                                             </Field>
                                            
-                                            <ErrorMessage name="available_leave" component="div" className="error-message text-red-500" />
+                                            {/* <ErrorMessage name="available_leave" component="div" className="error-message text-red-500" /> */}
+                                            <ErrorMessage name="available_leave" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
+                                
                                             </div>
                                         </div>
                                         <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
@@ -97,15 +99,17 @@ const ApplyLeaveForm = ({setModal6}) => {
                                                 Leave From Date
                                             </label>
                                             <div className='flex-1'>
-                                            <Field id="leave_form_date" type="date" name="leave_form_date" className="form-input flex-1" placeholder="Enter Phone number" required />
-                                            <ErrorMessage name="leave_form_date" component="div" className="error-message text-red-500" />
+                                            <Field id="leave_form_date" type="date" name="leave_form_date" className="form-input flex-1" placeholder="Enter Phone number"/>
+                                            {/* <ErrorMessage name="leave_form_date" component="div" className="error-message text-red-500" /> */}
+                                            <ErrorMessage name="leave_form_date" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                             </div>
                                             <label htmlFor="leave_to_date" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                                 Leave to Date
                                             </label>
                                             <div className='flex-1'>
-                                            <Field id="leave_to_date" type="date" name="leave_to_date" className="form-input flex-1" placeholder="Enter Phone number" required />
-                                            <ErrorMessage name="leave_to_date" component="div" className="error-message text-red-500" />
+                                            <Field id="leave_to_date" type="date" name="leave_to_date" className="form-input flex-1" placeholder="Enter Phone number" />
+                                            {/* <ErrorMessage name="leave_to_date" component="div" className="error-message text-red-500" /> */}
+                                            <ErrorMessage name="leave_to_date" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                             </div>
                                         </div>
                                         <div className="mt-4 flex gap-5  lg:flex-row flex-col">
@@ -114,7 +118,8 @@ const ApplyLeaveForm = ({setModal6}) => {
                                             </label>
                                             <div className='flex-1'>
                                             <Field as="textarea" id='reason' rows={4} className="form-textarea ltr:rounded-l-none rtl:rounded-r-none" name='reason' />
-                                            <ErrorMessage name="reason" component="div" className="error-message text-red-500" />
+                                            {/* <ErrorMessage name="reason" component="div" className="error-message text-red-500" /> */}
+                                            <ErrorMessage name="reason" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                             </div>
                                         </div>
 
@@ -122,7 +127,8 @@ const ApplyLeaveForm = ({setModal6}) => {
                                             <label htmlFor='attach_document' className="ltr:mr-2 rtl:ml-2 w-28  mb-0">Attach Document</label>
                                            <div className='flex-1'>
                                             <input id="attach_document" type="file" accept="image/png, image/jpeg,.pdf" name='attach_document' className="form-input flex-1" onChange={(event) => setFieldValue("attach_document", event.currentTarget.files[0])} />
-                                            <ErrorMessage name="attach_document" component="div" className="error-message text-red-500" />
+                                            {/* <ErrorMessage name="attach_document" component="div" className="error-message text-red-500" /> */}
+                                            <ErrorMessage name="attach_document" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                             </div>
                                         </div>
                                     </div>

@@ -65,7 +65,7 @@ const sampleData: SampleData[] = [
                 lng: 164.677197,
             },
         },
-        note: '',
+        note: <input type="text" className='form-input'/>,
         source: 'N/A',
         isActive: true,
         age: 39,
@@ -91,6 +91,7 @@ const sampleData: SampleData[] = [
         isActive: true,
         age: 39,
         company: 'POLARAX',
+        
     },
 ];
 

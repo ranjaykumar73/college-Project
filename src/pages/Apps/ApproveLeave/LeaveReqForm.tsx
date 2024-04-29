@@ -72,7 +72,7 @@ const LeaveReqForm = ({ sendDataToAPI ,setModal5}) => {
                 onSubmit={handleOnSubmit}
             >
                  {({ setFieldValue }) => (
-                <Form>
+                <Form className="">
                     <div className="panel px-0 flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
                         <div className="flex flex-wrap px-4">
                             <div className="mb-6 lg:w-1/2 w-full">
@@ -88,7 +88,7 @@ const LeaveReqForm = ({ sendDataToAPI ,setModal5}) => {
                                             Role
                                         </label>
                                         <div className='flex-1'>
-                                        <Field id='role' name="role" as="select" className="form-select flex-1" required>
+                                        <Field as="select" id='role' name="role"  className="form-select flex-1" required>
                                             <option>Select Role</option>
                                             <option>Admin</option>
                                             <option>Teacher</option>
@@ -97,14 +97,16 @@ const LeaveReqForm = ({ sendDataToAPI ,setModal5}) => {
                                             <option>Receptionist</option>
                                             <option>Super Admin</option>
                                         </Field>
-                                        <ErrorMessage name="role" className="error-message text-red-500"/>
+                                        {/* <ErrorMessage name="role" className="error-message text-red-500"/> */}
+                                        <ErrorMessage name="role" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                         <label htmlFor="name" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Name
                                         </label>
                                         <div className='flex-1'>
-                                        <Field id="name" type="text" name="name" className="form-input flex-1" placeholder="Enter Name" required />
-                                        <ErrorMessage name="name" className="error-message text-red-500"/>
+                                        <Field id="name" type="text" name="name" className="form-input flex-1" placeholder="Enter Name" />
+                                        {/* <ErrorMessage name="name" className="error-message text-red-500"/> */}
+                                        <ErrorMessage name="name" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                     </div>
 
@@ -113,20 +115,22 @@ const LeaveReqForm = ({ sendDataToAPI ,setModal5}) => {
                                             Apply date
                                         </label>
                                         <div className='flex-1'>
-                                        <Field id="apply_date" type="date" name="apply_date" className="form-input flex-1" placeholder="Enter Apply date" required />
-                                        <ErrorMessage name="apply_date" className="error-message text-red-500"/>
+                                        <Field id="apply_date" type="date" name="apply_date" className="form-input flex-1" placeholder="Enter Apply date" />
+                                        {/* <ErrorMessage name="apply_date" className="error-message text-red-500"/> */}
+                                        <ErrorMessage name="apply_date" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                         <label htmlFor="leave_type" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Leave Type
                                         </label>
                                         <div className='flex-1'>
-                                        <Field name="leave_type" as="select" className="form-select flex-1" required>
+                                        <Field name="leave_type" as="select" className="form-select flex-1" >
                                             <option>Select Leave type</option>
                                             <option>Casual leave</option>
                                             <option>Sick Leave</option>
                                             <option>Meternity Leave</option>
                                         </Field>
-                                        <ErrorMessage name="leave_type" className="error-message text-red-500"/>
+                                        {/* <ErrorMessage name="leave_type" className="error-message text-red-500"/> */}
+                                        <ErrorMessage name="leave_type" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                     </div>
 
@@ -135,15 +139,17 @@ const LeaveReqForm = ({ sendDataToAPI ,setModal5}) => {
                                             Leave From Date
                                         </label>
                                         <div className='flex-1'>
-                                        <Field id="leave_from_date" type="date" name="leave_form_date" className="form-input flex-1" placeholder="Enter Leave From Date" required />
-                                        <ErrorMessage name="leave_form_date" className="error-message text-red-500"/>
+                                        <Field id="leave_from_date" type="date" name="leave_form_date" className="form-input flex-1" placeholder="Enter Leave From Date" />
+                                        {/* <ErrorMessage name="leave_form_date" className="error-message text-red-500"/> */}
+                                        <ErrorMessage name="leave_form_date" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                         <label htmlFor="leave_to_date" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Leave to Date
                                         </label>
                                         <div className='flex-1'>
-                                        <Field id="leave_to_date" type="date" name="leave_to_date" className="form-input flex-1" placeholder="Enter Leave to Date" required />
-                                        <ErrorMessage name="leave_to_date" className="error-message text-red-500"/>
+                                        <Field id="leave_to_date" type="date" name="leave_to_date" className="form-input flex-1" placeholder="Enter Leave to Date" />
+                                        {/* <ErrorMessage name="leave_to_date" className="error-message text-red-500"/> */}
+                                        <ErrorMessage name="leave_to_date" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                     </div>
 
@@ -152,15 +158,17 @@ const LeaveReqForm = ({ sendDataToAPI ,setModal5}) => {
                                             Reason
                                         </label>
                                         <div className='flex-1'>
-                                        <Field id="reason" as="textarea" rows={4} className="form-textarea ltr:rounded-l-none rtl:rounded-r-none" name="reason" placeholder="Enter Reason" required />
-                                        <ErrorMessage name="reason" className="error-message text-red-500" />
+                                        <Field id="reason" as="textarea" rows={4} className="form-textarea ltr:rounded-l-none rtl:rounded-r-none" name="reason" placeholder="Enter Reason"/>
+                                        {/* <ErrorMessage name="reason" className="error-message text-red-500" /> */}
+                                        <ErrorMessage name="reason" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                         <label htmlFor="note" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                             Note
                                         </label>
                                         <div className='flex-1'>
-                                        <Field id="note" as="textarea" rows={4} className="form-textarea ltr:rounded-l-none rtl:rounded-r-none" name="note" placeholder="Enter Note" required />
-                                        <ErrorMessage name="note" className="error-message text-red-500"/>
+                                        <Field id="note" as="textarea" rows={4} className="form-textarea ltr:rounded-l-none rtl:rounded-r-none" name="note" placeholder="Enter Note"  />
+                                        {/* <ErrorMessage name="note" className="error-message text-red-500"/> */}
+                                        <ErrorMessage name="note" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                     </div>
 
@@ -168,7 +176,8 @@ const LeaveReqForm = ({ sendDataToAPI ,setModal5}) => {
                                         <label className="ltr:mr-2 rtl:ml-2 w-28  mb-0">Attach Document</label>
                                         <div className='flex-1'>
                                         <input type="file" accept="image/png, image/jpeg,.pdf" name="attach_document" className="form-input flex-1" onChange={(event) => setFieldValue("attach_document", event.currentTarget.files[0])} />
-                                        <ErrorMessage name="attach_document" className="error-message text-red-500"/>
+                                        {/* <ErrorMessage name="attach_document" className="error-message text-red-500"/> */}
+                                        <ErrorMessage name="attach_document" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                         <label className="ltr:mr-2 rtl:ml-2 w-28  mb-0">status</label>
                                             <div className='flex-1'>
@@ -186,7 +195,8 @@ const LeaveReqForm = ({ sendDataToAPI ,setModal5}) => {
                                                 <span className="text-white-dark">Disapprove</span>
                                             </label>
                                         </div>
-                                        <ErrorMessage name="status" className="error-message text-red-500"/>
+                                        {/* <ErrorMessage name="status" className="error-message text-red-500"/> */}
+                                        <ErrorMessage name="status" render={(msg) => <div className="text-red-600 text-sm">{msg}</div>} />
                                         </div>
                                     </div>
                                 </div>

@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import * as Yup from 'yup';
-import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import MaskedInput from 'react-text-mask';
 
 interface FormValues {
@@ -57,9 +56,10 @@ const Registration = ({ nextHandler }) => {
     });
 
     // Function to handle form submission
-    const handleSubmit = (values: FormValues ) => {
-        alert('submitting....')
+    const handleSubmit = (values: FormValues) => {
+        alert('submitting....');
         nextHandler();
+        console.log(values);
     };
 
     return (
@@ -112,16 +112,17 @@ const Registration = ({ nextHandler }) => {
                                                 First Name
                                             </label>
                                             <div className=" flex-1 ">
-                                                <Field  id="first_name" type="text" name="first_name" className="form-input flex-1 " placeholder="Enter First Name" />
-
-                                                <ErrorMessage name="first_name" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="first_name" type="text" name="first_name" className="form-input flex-1 " placeholder="Enter First Name" />
+                                                {/* {errors.first_name && touched.first_name ?(<div className="text-red-600">{errors.first_name}</div>):null} */}
+                                                {/* {submitCount ? errors.first_name ? <div className="text-danger mt-1">{errors.first_name}</div> : <div className="text-success mt-1">Looks Good!</div> : ''} */}
+                                                <ErrorMessage name="first_name" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="last_name" className="ltr:mr-2 rtl:ml-2 w-28 mb-0 ">
                                                 Last Name
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="last_name" type="text" name="last_name" className="form-input flex-1" placeholder="Enter Last Name" required />
-                                                <ErrorMessage name="last_name" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="last_name" type="text" name="last_name" className="form-input flex-1" placeholder="Enter Last Name" />
+                                                <ErrorMessage name="last_name" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
 
@@ -130,15 +131,15 @@ const Registration = ({ nextHandler }) => {
                                                 Father's Name
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="father_name" type="text" name="father_name" className="form-input flex-1 " placeholder="Enter Father Name" required />
-                                                <ErrorMessage name="father_name" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="father_name" type="text" name="father_name" className="form-input flex-1 " placeholder="Enter Father Name" />
+                                                <ErrorMessage name="father_name" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="mother_name" className="ltr:mr-2 rtl:ml-2 w-28 mb-0 ">
                                                 Mother's Name
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="mother_name" type="text" name="mother_name" className="form-input flex-1" placeholder="Enter Mother Name" required />
-                                                <ErrorMessage name="mother_name" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="mother_name" type="text" name="mother_name" className="form-input flex-1" placeholder="Enter Mother Name" />
+                                                <ErrorMessage name="mother_name" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
                                         <div className="mt-4 flex  gap-5 lg:flex-row flex-col ">
@@ -146,8 +147,8 @@ const Registration = ({ nextHandler }) => {
                                                 Email
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="email" type="email" name="email" className="form-input flex-1" placeholder="Enter Email" required />
-                                                <ErrorMessage name="email" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="email" type="email" name="email" className="form-input flex-1" placeholder="Enter Email" />
+                                                <ErrorMessage name="email" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="phone_number" className="ltr:mr-2 rtl:ml-2 w-28 mb-0">
                                                 Phone Number
@@ -157,7 +158,6 @@ const Registration = ({ nextHandler }) => {
                                                     id="phone_number"
                                                     type="text"
                                                     name="phone_number"
-                                                  
                                                     render={({ field }) => (
                                                         <MaskedInput
                                                             {...field}
@@ -167,7 +167,7 @@ const Registration = ({ nextHandler }) => {
                                                         />
                                                     )}
                                                 />
-                                                <ErrorMessage name="phone_number" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <ErrorMessage name="phone_number" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
                                         <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
@@ -175,20 +175,20 @@ const Registration = ({ nextHandler }) => {
                                                 Gender
                                             </label>
                                             <div className="flex-1">
-                                                <Field as="select" id="gender" className="form-select flex-1" name="gender" required>
+                                                <Field as="select" id="gender" className="form-select flex-1" name="gender">
                                                     <option value="">Select Gender</option>
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
                                                     <option value="Other">Others</option>
                                                 </Field>
-                                                <ErrorMessage name="gender" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <ErrorMessage name="gender" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="date_of_birth" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                                 Date of Birth
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="date_of_birth" type="date" name="date_of_birth" className="form-input flex-1" required />
-                                                <ErrorMessage name="date_of_birth" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="date_of_birth" type="date" name="date_of_birth" className="form-input flex-1" />
+                                                <ErrorMessage name="date_of_birth" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
                                         <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
@@ -196,14 +196,14 @@ const Registration = ({ nextHandler }) => {
                                                 Employee Id
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="employee_id" type="number" name="employee_id" className="form-input flex-1" placeholder=" Employee Id" required />
-                                                <ErrorMessage name="employee_id" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="employee_id" type="number" name="employee_id" className="form-input flex-1" placeholder=" Employee Id" />
+                                                <ErrorMessage name="employee_id" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="role" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                                 Role
                                             </label>
                                             <div className="flex-1">
-                                                <Field as="select" id="role" name="role" className="form-select flex-1" required>
+                                                <Field as="select" id="role" name="role" className="form-select flex-1">
                                                     <option value="">Select Role </option>
                                                     <option value="Admin">Admin</option>
                                                     <option value="Teacher">Teacher</option>
@@ -212,7 +212,7 @@ const Registration = ({ nextHandler }) => {
                                                     <option value="Receptionist">Receptionist</option>
                                                     <option value="Super Admin">Super Admin</option>
                                                 </Field>
-                                                <ErrorMessage name="role" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <ErrorMessage name="role" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
                                         <div className="mt-4 flex gap-5  lg:flex-row flex-col">
@@ -220,7 +220,7 @@ const Registration = ({ nextHandler }) => {
                                                 Designation
                                             </label>
                                             <div className="flex-1">
-                                                <Field as="select" id="designation" name="designation" className="form-select flex-1" required>
+                                                <Field as="select" id="designation" name="designation" className="form-select flex-1">
                                                     <option value="">Select Designation</option>
                                                     <option value="Faculty">Faculty</option>
                                                     <option value="Accountant">Accountant</option>
@@ -231,13 +231,13 @@ const Registration = ({ nextHandler }) => {
                                                     <option value="Librarian">Librarian</option>
                                                     <option value="Technical Head">Technical Head</option>
                                                 </Field>
-                                                <ErrorMessage name="designation" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <ErrorMessage name="designation" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="department" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                                 Department
                                             </label>
                                             <div className="flex-1">
-                                                <Field as="select" id="department" name="department" className="form-select flex-1" required>
+                                                <Field as="select" id="department" name="department" className="form-select flex-1">
                                                     <option value="">Select Department</option>
                                                     <option value="Academic">Academic</option>
                                                     <option value="Library">Library</option>
@@ -249,7 +249,7 @@ const Registration = ({ nextHandler }) => {
                                                     <option value="Admin">Admin</option>
                                                     <option value="Finance">Finance</option>
                                                 </Field>
-                                                <ErrorMessage name="department" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <ErrorMessage name="department" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
 
@@ -258,21 +258,21 @@ const Registration = ({ nextHandler }) => {
                                                 Religion
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="religion" type="text" name="religion" className="form-input flex-1" placeholder="Enter Religion" required />
-                                                <ErrorMessage name="religion" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="religion" type="text" name="religion" className="form-input flex-1" placeholder="Enter Religion" />
+                                                <ErrorMessage name="religion" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="category" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                                 Category
                                             </label>
                                             <div className="flex-1">
-                                                <Field as="select" id="category" name="category" className="form-select flex-1" required>
+                                                <Field as="select" id="category" name="category" className="form-select flex-1">
                                                     <option value="">Select Category</option>
                                                     <option value="General">General</option>
                                                     <option value="OBC">OBC</option>
                                                     <option value="ST">ST</option>
                                                     <option value="SC">SC</option>
                                                 </Field>
-                                                <ErrorMessage name="category" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <ErrorMessage name="category" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
                                         <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
@@ -280,15 +280,15 @@ const Registration = ({ nextHandler }) => {
                                                 Caste
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="caste" type="text" name="caste" className="form-input flex-1" placeholder="Enter Caste" required />
-                                                <ErrorMessage name="caste" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="caste" type="text" name="caste" className="form-input flex-1" placeholder="Enter Caste" />
+                                                <ErrorMessage name="caste" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="joining_date" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                                 Joining Date
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="joining_date" type="date" name="joining_date" className="form-input flex-1" placeholder="Enter Phone number" required />
-                                                <ErrorMessage name="joining_date" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="joining_date" type="date" name="joining_date" className="form-input flex-1" placeholder="Enter Phone number" />
+                                                <ErrorMessage name="joining_date" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
                                         <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
@@ -296,7 +296,7 @@ const Registration = ({ nextHandler }) => {
                                                 Marital Status
                                             </label>
                                             <div className="flex-1">
-                                                <Field as="select" id="marital_status" name="marital_status" className="form-select flex-1" required>
+                                                <Field as="select" id="marital_status" name="marital_status" className="form-select flex-1">
                                                     <option value="">Select Marital Status</option>
                                                     <option value="Single">Single</option>
                                                     <option value="Married">Married</option>
@@ -304,7 +304,7 @@ const Registration = ({ nextHandler }) => {
                                                     <option value="Separated">Separated</option>
                                                     <option value="No Specific">No Specific</option>
                                                 </Field>
-                                                <ErrorMessage name="marital_status" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <ErrorMessage name="marital_status" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="aadhar_number" className="ltr:mr-2 rtl:ml-2 w-28 mb-0">
                                                 Aadhar Number
@@ -319,11 +319,13 @@ const Registration = ({ nextHandler }) => {
                                                     render={({ field }) => (
                                                         <MaskedInput
                                                             {...field}
-                                                            className='form-input'  placeholder="Enter Aadhar Number"  mask={[ /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/]}
+                                                            className="form-input"
+                                                            placeholder="Enter Aadhar Number"
+                                                            mask={[/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, ' ', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/]}
                                                         />
                                                     )}
                                                 />
-                                                <ErrorMessage name="aadhar_number" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <ErrorMessage name="aadhar_number" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
                                         <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
@@ -331,15 +333,15 @@ const Registration = ({ nextHandler }) => {
                                                 Pan Card
                                             </label>
                                             <div className="flex-1">
-                                                <Field id="pan_card" type="text" name="pan_card" className="form-input flex-1" placeholder="Enter PAN Number" required />
-                                                <ErrorMessage name="pan_card" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <Field id="pan_card" type="text" name="pan_card" className="form-input flex-1" placeholder="Enter PAN Number" />
+                                                <ErrorMessage name="pan_card" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                             <label htmlFor="upload_photo" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
                                                 Upload Photo
                                             </label>
                                             <div className="flex-1">
                                                 <Field id="upload_photo" type="file" name="upload_photo" accept="image/png, image/jpeg,.pdf" className="form-input flex-1" />
-                                                <ErrorMessage name="upload_photo" render={(msg) => <div className="text-red-500">{msg}</div>} />
+                                                <ErrorMessage name="upload_photo" render={(msg) => <div className="text-danger">{msg}</div>} />
                                             </div>
                                         </div>
                                     </div>
@@ -348,7 +350,7 @@ const Registration = ({ nextHandler }) => {
                         </div>
                         {/* <button type="submit" onClick={handleSubmit}>Sbmit</button> */}
                         <div className="flex justify-between mt-10 px-10">
-                            <button type="button" className="btn btn-primary ltr:ml-auto rtl:mr-auto" onClick={handleSubmit}>
+                            <button type="submit" className="btn btn-primary ltr:ml-auto rtl:mr-auto">
                                 {'Next'}
                             </button>
                         </div>
