@@ -1,16 +1,15 @@
-import {  useState } from 'react';
-import IconThumbUp from '../../../components/Icon/IconThumbUp';
+import React, { useState } from 'react'
+import IconNotesEdit from '../../../components/Icon/IconNotesEdit';
 import IconHome from '../../../components/Icon/IconHome';
+import IconNotes from '../../../components/Icon/IconNotes';
+import IconThumbUp from '../../../components/Icon/IconThumbUp';
 import Registration from './Registration';
 import Address from './Address';
-import UploadDocument from './UploadDocument';
-import IconNotesEdit from '../../../components/Icon/IconNotesEdit';
-import IconNotes from '../../../components/Icon/IconNotes';
 import PayrollDeatails from './PayrollDeatails';
+import UploadDocument from './UploadDocument';
 
-const CustomAdd = () => {
-
-
+const EmpEdit = () => {
+  
     const [activeTab4, setActiveTab4] = useState<any>(1);
     function nextHandler(){
         activeTab4 === 4 ? null : setActiveTab4(activeTab4 + 1);
@@ -108,4 +107,4 @@ const CustomAdd = () => {
     );
 };
 
-export default CustomAdd;
+export default EmpEdit;

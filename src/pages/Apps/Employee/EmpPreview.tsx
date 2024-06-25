@@ -2,11 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import IconSend from '../../../components/Icon/IconSend';
 import IconPrinter from '../../../components/Icon/IconPrinter';
 import IconDownload from '../../../components/Icon/IconDownload';
-import IconEdit from '../../../components/Icon/IconEdit';
-import IconPlus from '../../../components/Icon/IconPlus';
+import { jsPDF } from 'jspdf';
 
 const EmpPreview = () => {
     // const dispatch = useDispatch();
@@ -17,61 +15,23 @@ const EmpPreview = () => {
         window.print();
     };
 
-    const items = [
-        {
-            id: 1,
-            title: 'Calendar App Customization',
-            quantity: 1,
-            price: '120',
-            amount: '120',
-        },
-        {
-            id: 2,
-            title: 'Chat App Customization',
-            quantity: 1,
-            price: '230',
-            amount: '230',
-        },
-        {
-            id: 3,
-            title: 'Laravel Integration',
-            quantity: 1,
-            price: '405',
-            amount: '405',
-        },
-        {
-            id: 4,
-            title: 'Backend UI Design',
-            quantity: 1,
-            price: '2500',
-            amount: '2500',
-        },
-    ];
+    const downloadPdf = () => {
+        const doc = new jsPDF();
 
-    const columns = [
-        {
-            key: 'id',
-            label: 'S.NO',
-        },
-        {
-            key: 'title',
-            label: 'ITEMS',
-        },
-        {
-            key: 'quantity',
-            label: 'QTY',
-        },
-        {
-            key: 'price',
-            label: 'PRICE',
-            class: 'ltr:text-right rtl:text-left',
-        },
-        {
-            key: 'amount',
-            label: 'AMOUNT',
-            class: 'ltr:text-right rtl:text-left',
-        },
-    ];
+        // Add content to the PDF document
+        doc.text('Employee Details', 10, 10);
+        doc.autoTable({
+            head: [columns.map(column => column.label)],
+            body: items.map(item => columns.map(column => item[column.key])),
+        });
+
+        // Save the PDF as a file
+        doc.save('employee_details.pdf');
+    };
+
+
+    
+   
 
     return (
         <div>
@@ -86,7 +46,7 @@ const EmpPreview = () => {
                     Print
                 </button>
 
-                <button type="button" className="btn btn-success gap-2">
+                <button type="button" className="btn btn-success gap-2"  onClick={()=>downloadPdf()}>
                     <IconDownload />
                     Download
                 </button>

@@ -1,14 +1,15 @@
 import { lazy } from 'react';
 import CustomAdd from '../pages/Apps/Invoice/CustomAdd';
-import EmpAdd from '../pages/Apps/Employee/EmpAdd'
+import EmpAdd from '../pages/Apps/Employee/EmpAdd';
 import ApplyLeave from '../pages/Apps/ApproveLeave/ApplyLeave';
-import ApplyLeaveForm from '../pages/Apps/ApproveLeave/ApplyLeaveForm'
+import ApplyLeaveForm from '../pages/Apps/ApproveLeave/ApplyLeaveForm';
 import TeachersRating from '../pages/Apps/TeachersRating/TeachersRating';
 
 import Payroll from '../pages/Apps/Payroll/Payroll';
 
 import EmpPreview from '../pages/Apps/Employee/EmpPreview';
-
+import EmpEdit from '../pages/Apps/Employee/EmpEdit';
+import StaffProfile from '../pages/Apps/Employee/StaffProfile';
 
 // import LeaveReqForm from '../pages/Apps/ApproveLeave/LeaveReqForm';
 // import ApproveLeave from '../pages/Apps/ApproveLeave/ApproveLeave';
@@ -24,14 +25,14 @@ const Todolist = lazy(() => import('../pages/Apps/Todolist'));
 const Mailbox = lazy(() => import('../pages/Apps/Mailbox'));
 const Notes = lazy(() => import('../pages/Apps/Notes'));
 const Contacts = lazy(() => import('../pages/Apps/Contacts'));
-const StudentsDetails = lazy(()=>import('../pages/Apps/StudentsDetails'))
-const EmpDetails = lazy(()=>import('../pages/Apps/EmpDetails'))
-const Attendance = lazy(()=>import("../pages/Apps/Attendance/Attendance"))
-const Department = lazy(()=> import ('../pages/Apps/Department/Department'))
-const Designation = lazy(()=> import('../pages/Apps/Designation/Designation'))
-const LeaveType = lazy(()=> import('../pages/Apps/LeaveType/LeaveType'))
-const ApproveLeave = lazy(()=> import('../pages/Apps/ApproveLeave/ApproveLeave'))
-const LeaveReqForm = lazy(()=>import('../pages/Apps/ApproveLeave/LeaveReqForm'))
+const StudentsDetails = lazy(() => import('../pages/Apps/StudentsDetails'));
+const EmpDetails = lazy(() => import('../pages/Apps/EmpDetails'));
+const Attendance = lazy(() => import('../pages/Apps/Attendance/Attendance'));
+const Department = lazy(() => import('../pages/Apps/Department/Department'));
+const Designation = lazy(() => import('../pages/Apps/Designation/Designation'));
+const LeaveType = lazy(() => import('../pages/Apps/LeaveType/LeaveType'));
+const ApproveLeave = lazy(() => import('../pages/Apps/ApproveLeave/ApproveLeave'));
+const LeaveReqForm = lazy(() => import('../pages/Apps/ApproveLeave/LeaveReqForm'));
 const Chat = lazy(() => import('../pages/Apps/Chat'));
 const Scrumboard = lazy(() => import('../pages/Apps/Scrumboard'));
 const Calendar = lazy(() => import('../pages/Apps/Calendar'));
@@ -172,59 +173,65 @@ const routes = [
     },
     // Apps page
     {
-        path:"/apps/empDetails",
-        element:<EmpDetails/>
+        path: '/apps/employeelist',
+        element: <EmpDetails />,
     },
     {
-        path:"apps/attendance",
-        element:<Attendance/>
+        path: '/apps/employeeEdit',
+        element: <EmpEdit />,
     },
     {
-        path:'/apps/studentsDetails',
-        element:<StudentsDetails/>
+        path: 'apps/attendance',
+        element: <Attendance />,
     },
     {
-        path:'apps/department',
-        element:<Department/>
+        path: '/apps/studentsDetails',
+        element: <StudentsDetails />,
     },
     {
-        path:'apps/designation',
-        element:<Designation/>
+        path: 'apps/department',
+        element: <Department />,
     },
-    {   path:"apps/emppreview",
-        element:<EmpPreview/>
+    {
+        path: 'apps/designation',
+        element: <Designation />,
     },
+    { path: 'apps/emppreview', 
+    element: <EmpPreview /> 
+    },
+
+    { 
+    path: '/apps/StaffProfile', 
+    element: <StaffProfile />
+     },
     // leave
     {
-        path:'apps/leavetype',
-        element:<LeaveType/>
+        path: 'apps/leavetype',
+        element: <LeaveType />,
     },
     {
-        path:'apps/approveleave/request',
-        element:<ApproveLeave/>
+        path: 'apps/approveleave/request',
+        element: <ApproveLeave />,
     },
     {
-        path:'apps/leavereqform',
-        element:<LeaveReqForm/>
+        path: 'apps/leavereqform',
+        element: <LeaveReqForm />,
     },
     {
-        path:'apps/applyleave',
-        element:<ApplyLeave/>
+        path: 'apps/applyleave',
+        element: <ApplyLeave />,
     },
     {
-        path:'apps/applyleaveform',
-        element:<ApplyLeaveForm/>
+        path: 'apps/applyleaveform',
+        element: <ApplyLeaveForm />,
     },
     //rating
     {
-        path:'apps/teachersrating',
-        element:<TeachersRating/>
-    }
-    ,
-    //payroll
-    {path:"apps/payroll",
-        element:<Payroll/>
+        path: 'apps/teachersrating',
+        element: <TeachersRating />,
     },
+    //payroll
+    { path: 'apps/payroll', element: <Payroll /> },
     {
         path: '/apps/chat',
         element: <Chat />,

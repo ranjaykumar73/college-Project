@@ -2,21 +2,27 @@ import { Link, NavLink } from 'react-router-dom';
 import { DataTable, DataTableSortStatus } from 'mantine-datatable';
 import { useState, useEffect } from 'react';
 import sortBy from 'lodash/sortBy';
-import { useDispatch, useSelector } from 'react-redux';
-import { IRootState } from '../../../store';
+import { downloadExcel } from 'react-export-table-to-excel';
+import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import IconTrashLines from '../../../components/Icon/IconTrashLines';
 import IconPlus from '../../../components/Icon/IconPlus';
 import IconEdit from '../../../components/Icon/IconEdit';
 import IconEye from '../../../components/Icon/IconEye';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import IconFile from '../../../components/Icon/IconFile';
+import IconPrinter from '../../../components/Icon/IconPrinter';
+import IconFilter from '../../../components/Icon/IconFilter';
+import ModalApplyLeavereq from './ModalApplyLeavereq';
 import ModalApplyLeave from './ModalApplyLeave';
-import { boolean } from 'yup';
 
 const ApplyLeave = () => {
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(setPageTitle('Invoice List'));
-    // });
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setPageTitle('Export Table'));
+    });
+
     const [items, setItems] = useState([
         {
             id: 1,
@@ -177,10 +183,65 @@ const ApplyLeave = () => {
         },
     ]);
 
+    const col = ['id', 'name', 'leave_type', 'leave_date', 'days', 'email', 'apply_date', 'tooltipz'];
+    const [page, setPage] = useState(1);
+    const PAGE_SIZES = [10, 20, 30, 50, 100];
+    const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
+    const [initialRecords, setInitialRecords] = useState(sortBy(items, 'id'));
+    const [recordsData, setRecordsData] = useState(initialRecords);
+    const [selectedRecords, setSelectedRecords] = useState<any>([]);
+    const [search, setSearch] = useState('');
+    const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({ columnAccessor: 'id', direction: 'asc' });
+    const [modal6, setModal6] = useState<boolean>(false);
+    useEffect(() => {
+        setPage(1);
+    }, [pageSize]);
+
+    useEffect(() => {
+        const from = (page - 1) * pageSize;
+        const to = from + pageSize;
+        setRecordsData([...initialRecords.slice(from, to)]);
+    }, [page, pageSize, initialRecords]);
+
+    useEffect(() => {
+        setInitialRecords(() => {
+            return items.filter((item: any) => {
+                return (
+                    item.invoice.toLowerCase().includes(search.toLowerCase()) ||
+                    item.name.toLowerCase().includes(search.toLowerCase()) ||
+                    item.email.toLowerCase().includes(search.toLowerCase()) ||
+                    item.apply_date.toLowerCase().includes(search.toLowerCase()) ||
+                    item.leave_type.toLowerCase().includes(search.toLowerCase()) ||
+                    item.amount.toLowerCase().includes(search.toLowerCase()) ||
+                    item.status.tooltip.toLowerCase().includes(search.toLowerCase())
+                );
+            });
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [search]);
+
+    useEffect(() => {
+        const data = sortBy(initialRecords, sortStatus.columnAccessor);
+        setInitialRecords(sortStatus.direction === 'desc' ? data.reverse() : data);
+        setPage(1);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sortStatus]);
+    const header = ['id', 'name', 'leave_type', 'leave_date', 'days', 'email', 'apply_date', 'tooltip'];
+
+    // const formatDate = (date: any) => {
+    //     if (date) {
+    //         const dt = new Date(date);
+    //         const month = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : dt.getMonth() + 1;
+    //         const day = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
+    //         return day + '/' + month + '/' + dt.getFullYear();
+    //     }
+    //     return '';
+    // };
+
     const deleteRow = (id: any = null) => {
         if (window.confirm('Are you sure want to delete selected row ?')) {
             if (id) {
-                setRecords(items.filter((user) => user.id !== id));
+                setRecordsData(items.filter((user) => user.id !== id));
                 setInitialRecords(items.filter((user) => user.id !== id));
                 setItems(items.filter((user) => user.id !== id));
                 setSearch('');
@@ -191,7 +252,7 @@ const ApplyLeave = () => {
                     return d.id;
                 });
                 const result = items.filter((d) => !ids.includes(d.id as never));
-                setRecords(result);
+                setRecordsData(result);
                 setInitialRecords(result);
                 setItems(result);
                 setSearch('');
@@ -201,84 +262,272 @@ const ApplyLeave = () => {
         }
     };
 
-    const [page, setPage] = useState(1);
-    const PAGE_SIZES = [10, 20, 30, 50, 100];
-    const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-    const [initialRecords, setInitialRecords] = useState(sortBy(items, 'invoice'));
-    const [records, setRecords] = useState(initialRecords);
-    const [selectedRecords, setSelectedRecords] = useState<any>([]);
-    const [modal6, setModal6] = useState<boolean>(false);
-    const [search, setSearch] = useState('');
-    const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
-        columnAccessor: 'firstName',
-        direction: 'asc',
-    });
-
-    useEffect(() => {
-        setPage(1);
-        /* eslint-disable react-hooks/exhaustive-deps */
-    }, [pageSize]);
-
-    useEffect(() => {
-        const from = (page - 1) * pageSize;
-        const to = from + pageSize;
-        setRecords([...initialRecords.slice(from, to)]);
-    }, [page, pageSize, initialRecords]);
-
-    useEffect(() => {
-        setInitialRecords(() => {
-            return items.filter((item) => {
-                return (
-                    item.invoice.toLowerCase().includes(search.toLowerCase()) ||
-                    item.name.toLowerCase().includes(search.toLowerCase()) ||
-                    item.email.toLowerCase().includes(search.toLowerCase()) ||
-                    item.leave_date.toLowerCase().includes(search.toLowerCase()) ||
-                    item.amount.toLowerCase().includes(search.toLowerCase()) ||
-                    item.status.tooltip.toLowerCase().includes(search.toLowerCase())
-                );
-            });
+    function handleDownloadExcel() {
+        downloadExcel({
+            fileName: 'table',
+            sheet: 'react-export-table-to-excel',
+            tablePayload: {
+                header,
+                body: items,
+            },
         });
-    }, [search]);
+    }
 
-    useEffect(() => {
-        const data2 = sortBy(initialRecords, sortStatus.columnAccessor);
-        setRecords(sortStatus.direction === 'desc' ? data2.reverse() : data2);
-        setPage(1);
-    }, [sortStatus]);
+    const exportTable = (type: any) => {
+        let columns: any = col;
+        let records = items;
+        let filename = 'table';
+
+        let newVariable: any;
+        newVariable = window.navigator;
+
+        if (type === 'csv') {
+            let coldelimiter = ';';
+            let linedelimiter = '\n';
+            let result = columns
+                .map((d: any) => {
+                    return capitalize(d);
+                })
+                .join(coldelimiter);
+            result += linedelimiter;
+            // eslint-disable-next-line array-callback-return
+            records.map((item: any) => {
+                // eslint-disable-next-line array-callback-return
+                columns.map((d: any, index: any) => {
+                    if (index > 0) {
+                        result += coldelimiter;
+                    }
+                    let val = item[d] ? item[d] : '';
+                    result += val;
+                });
+                result += linedelimiter;
+            });
+
+            if (result == null) return;
+            if (!result.match(/^data:text\/csv/i) && !newVariable.msSaveOrOpenBlob) {
+                var data = 'data:application/csv;charset=utf-8,' + encodeURIComponent(result);
+                var link = document.createElement('a');
+                link.setAttribute('href', data);
+                link.setAttribute('download', filename + '.csv');
+                link.click();
+            } else {
+                var blob = new Blob([result]);
+                if (newVariable.msSaveOrOpenBlob) {
+                    newVariable.msSaveBlob(blob, filename + '.csv');
+                }
+            }
+        } else if (type === 'print') {
+            var rowhtml = '<p>' + filename + '</p>';
+            rowhtml +=
+                '<table style="width: 100%; " cellpadding="0" cellcpacing="0"><thead><tr style="color: #515365; background: #eff5ff; -webkit-print-color-adjust: exact; print-color-adjust: exact; "> ';
+            // eslint-disable-next-line array-callback-return
+            columns.map((d: any) => {
+                rowhtml += '<th>' + capitalize(d) + '</th>';
+            });
+            rowhtml += '</tr></thead>';
+            rowhtml += '<tbody>';
+
+            // eslint-disable-next-line array-callback-return
+            records.map((item: any) => {
+                rowhtml += '<tr>';
+                // eslint-disable-next-line array-callback-return
+                columns.map((d: any) => {
+                    let val = item[d] ? item[d] : '';
+                    rowhtml += '<td>' + val + '</td>';
+                });
+                rowhtml += '</tr>';
+            });
+            rowhtml +=
+                '<style>body {font-family:Arial; color:#495057;}p{text-align:center;font-size:18px;font-weight:bold;margin:15px;}table{ border-collapse: collapse; border-spacing: 0; }th,td{font-size:12px;text-align:left;padding: 4px;}th{padding:8px 4px;}tr:nth-child(2n-1){background:#f7f7f7; }</style>';
+            rowhtml += '</tbody></table>';
+            var winPrint: any = window.open('', '', 'left=0,top=0,width=1000,height=600,toolbar=0,scrollbars=0,status=0');
+            winPrint.document.write('<title>Print</title>' + rowhtml);
+            winPrint.document.close();
+            winPrint.focus();
+            winPrint.print();
+        } else if (type === 'txt') {
+            let coldelimiter = ',';
+            let linedelimiter = '\n';
+            let result = columns
+                .map((d: any) => {
+                    return capitalize(d);
+                })
+                .join(coldelimiter);
+            result += linedelimiter;
+            // eslint-disable-next-line array-callback-return
+            records.map((item: any) => {
+                // eslint-disable-next-line array-callback-return
+                columns.map((d: any, index: any) => {
+                    if (index > 0) {
+                        result += coldelimiter;
+                    }
+                    let val = item[d] ? item[d] : '';
+                    result += val;
+                });
+                result += linedelimiter;
+            });
+
+            if (result == null) return;
+            if (!result.match(/^data:text\/txt/i) && !newVariable.msSaveOrOpenBlob) {
+                var data1 = 'data:application/txt;charset=utf-8,' + encodeURIComponent(result);
+                var link1 = document.createElement('a');
+                link1.setAttribute('href', data1);
+                link1.setAttribute('download', filename + '.txt');
+                link1.click();
+            } else {
+                var blob1 = new Blob([result]);
+                if (newVariable.msSaveOrOpenBlob) {
+                    newVariable.msSaveBlob(blob1, filename + '.txt');
+                }
+            }
+        }
+    };
+
+    const capitalize = (text: any) => {
+        return text
+            .replace('_', ' ')
+            .replace('-', ' ')
+            .toLowerCase()
+            .split(' ')
+            .map((s: any) => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(' ');
+    };
+
+    const [filterbtn, setFilterbtn] = useState(false);
 
     return (
-        <div className="panel px-0 border-white-light dark:border-[#1b2e4b]">
-            <div className="invoice-table">
-                <div className="mb-4.5 px-5 flex md:items-center md:flex-row flex-col gap-5">
-                    <div className="flex items-center gap-2">
-                        {/* <button type="button" className="btn btn-danger gap-2" onClick={() => deleteRow()}>
-                            <IconTrashLines />
-                            Delete
-                        </button> */}
-                        <div onClick={() => setModal6(true)} className="btn btn-primary gap-2 cursor-pointer">
-                            <IconPlus />
-                            Apply Leave
-                        </div>
-                        <ModalApplyLeave modal6={modal6} setModal6={setModal6} />
+        <>
+            <div className="panel flex justify-between items-center overflow-x-auto whitespace-nowrap p-3">
+                <div className="ltr:mr-3 text-primary  text-xl flex justify-between flex-wrap font-bold rtl:ml-3">Apply leave</div>
+               <div className='flex'>
+                <div className=" text-white ltr:mr-3 rtl:ml-3">
+                    <div onClick={() => setModal6(true)} className="btn btn-primary gap-2 cursor-pointer">
+                        <IconPlus />
+                        Apply Leave
                     </div>
-                    <div className="ltr:ml-auto rtl:mr-auto">
-                        <input type="text" className="form-input w-auto" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                    <ModalApplyLeave modal6={modal6} setModal6={setModal6} />
+                </div>
+                {/* <button className="btn btn-primary gap-2" onClick={() => setFilterbtn(!filterbtn)}>
+                    <IconFilter className="text-lg" />
+                    Filter
+                </button> */}
+                <button className="btn btn-danger gap-1 ml-3" onClick={() => deleteRow()}>
+                    <IconTrashLines />
+                    Delete
+                </button>
+                </div>
+            </div>
+            {filterbtn && (
+                <div className="panel mt-4  overflow-x-auto p-3">
+                    <div className="flex justify-between lg:flex-row flex-col">
+                        <div className=" w-full ltr:lg:mr-6 rtl:lg:ml-6 mb-6">
+                            <div className="mt-4 flex  gap-5 lg:flex-row flex-col">
+                                <label htmlFor="employee_id" className="ltr:mr-2 rtl:ml-2 w-28 mb-0">
+                                    Employee Id
+                                </label>
+                                <div className="flex-1">
+                                    <input id="employee_id" type="number" name="employee_id" className="form-input flex-1" placeholder=" Employee Id" />
+                                </div>
+                                <label htmlFor="role" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                    Role
+                                </label>
+                                <div className="flex-1">
+                                    <select id="role" name="role" className="form-select flex-1">
+                                        <option value="">Select Role </option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Teacher">Teacher</option>
+                                        <option value="Accountant">Accountant</option>
+                                        <option value="Libraian">Libraian</option>
+                                        <option value="Receptionist">Receptionist</option>
+                                        <option value="Super Admin">Super Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="mt-4 flex gap-5  lg:flex-row flex-col">
+                                <label htmlFor="designation" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                    Designation
+                                </label>
+                                <div className="flex-1">
+                                    <select id="designation" className="form-select flex-1">
+                                        <option value="">Select Designation</option>
+                                        <option value="Faculty">Faculty</option>
+                                        <option value="Accountant">Accountant</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Receptionist">Receptionist</option>
+                                        <option value="Principle">Principle</option>
+                                        <option value="Director">Director</option>
+                                        <option value="Librarian">Librarian</option>
+                                        <option value="Technical Head">Technical Head</option>
+                                    </select>
+                                    {/* {errors.designation && <div className="text-danger">{errors.designation}</div>} */}
+                                    {/* <ErrorMessage name="designation" render={(msg) => <div className="text-danger">{msg}</div>} /> */}
+                                </div>
+                                <label htmlFor="department" className="ltr:mr-2 rtl:ml-2 w-28  mb-0">
+                                    Department
+                                </label>
+                                <div className="flex-1">
+                                    <select id="department" name="department" className="form-select flex-1">
+                                        <option value="">Select Department</option>
+                                        <option value="Academic">Academic</option>
+                                        <option value="Library">Library</option>
+                                        <option value="Sports">Sports</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Commerece">Commerece</option>
+                                        <option value="Arts">Arts</option>
+                                        <option value="Exam">Exam</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Finance">Finance</option>
+                                    </select>
+                                    {/* {errors.department && <div className="text-danger">{errors.department}</div>} */}
+                                    {/* <ErrorMessage name="department" render={(msg) => <div className="text-danger">{msg}</div>} /> */}
+                                </div>
+                            </div>
+                            <button className="btn btn-primary gap-2 mt-4 float-end">Apply</button>
+                        </div>
                     </div>
                 </div>
+            )}
 
-                <div className="datatables pagination-padding">
+            <div className="panel mt-6">
+                <div className="flex md:items-center justify-between md:flex-row flex-col mb-4.5 gap-5">
+                    <div className="flex items-center flex-wrap">
+                        <button type="button" onClick={() => exportTable('csv')} className="btn btn-primary btn-sm m-1 ">
+                            <IconFile className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
+                            CSV
+                        </button>
+                        <button type="button" onClick={() => exportTable('txt')} className="btn btn-primary btn-sm m-1">
+                            <IconFile className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
+                            TXT
+                        </button>
+
+                        <button type="button" className="btn btn-primary btn-sm m-1" onClick={handleDownloadExcel}>
+                            <IconFile className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
+                            EXCEL
+                        </button>
+
+                        <button type="button" onClick={() => exportTable('print')} className="btn btn-primary btn-sm m-1">
+                            <IconPrinter className="ltr:mr-2 rtl:ml-2" />
+                            PRINT
+                        </button>
+                    </div>
+
+                    <input type="text" className="form-input w-auto" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                </div>
+                <div className="datatables">
                     <DataTable
-                        className="whitespace-nowrap table-hover invoice-table"
-                        records={records}
+                        highlightOnHover
+                        className="whitespace-nowrap table-hover"
+                        records={recordsData}
                         columns={[
                             // {
                             //     accessor: 'Emp id',
-                            //     sortable: true,
-                            //     render: ({ invoice }) => (
-                            //         <NavLink to="/apps/invoice/preview">
-                            //             <div className="text-primary underline hover:no-underline font-semibold">{`${invoice}`}</div>
+                            //     title: 'Emp id',
+                            //     render: ({ emp_id,id }) => (
+                            //         <NavLink to="/apps/emppreview">
+                            //             <div className="text-primary underline hover:no-underline font-semibold">{`${emp_id}`}</div>
                             //         </NavLink>
                             //     ),
+                            //     sortable: true,
                             // },
                             {
                                 accessor: 'name',
@@ -304,6 +553,7 @@ const ApplyLeave = () => {
                             {
                                 accessor: 'leave Date',
                                 sortable: true,
+
                                 render: ({ leave_date }) => (
                                     <div>
                                         <div>{leave_date}</div>
@@ -332,8 +582,9 @@ const ApplyLeave = () => {
                             //     accessor: 'Phone ',
                             //     sortable: true,
                             //     titleClassName: 'text-right',
-                            //     render: ({ amount, id }) => <div className="text-right font-semibold">{`${amount}`}</div>,
+                            //     render: ({ phone, id }) => <div className="text-right font-semibold">{`${phone}`}</div>,
                             // },
+
                             {
                                 accessor: 'status',
                                 sortable: true,
@@ -361,7 +612,6 @@ const ApplyLeave = () => {
                                 ),
                             },
                         ]}
-                        highlightOnHover
                         totalRecords={initialRecords.length}
                         recordsPerPage={pageSize}
                         page={page}
@@ -372,11 +622,12 @@ const ApplyLeave = () => {
                         onSortStatusChange={setSortStatus}
                         selectedRecords={selectedRecords}
                         onSelectedRecordsChange={setSelectedRecords}
+                        minHeight={200}
                         paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
                     />
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -10,7 +10,7 @@ interface EmpDetails {
     admissionDate: string;
 }
 
-const EmpDetails: React.FC = () => {
+const EmpDetails = () => {
     const [value, setValue] = useState<EmpDetails>({
         rollnumber: '',
         studentName: '',

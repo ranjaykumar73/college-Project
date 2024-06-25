@@ -25,10 +25,21 @@ const PayrollDeatails = ({ nextHandler, backHandler }) => {
     });
 
     function submitForm(values: FormValues) {
-        alert('submitting....');
-        nextHandler();
-        console.log(values)
+        //const isConfirmed = window.confirm('Are you sure you want to submit the form?');
+        //if (isConfirmed) {
+            // alert('Submitting....');
+            nextHandler();
+            console.log(values);
+       // }
     }
+
+    function handleBackClick(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+        // Your other back button logic goes here
+        backHandler();
+    }
+    
     return (
     <Formik
         initialValues={{
@@ -49,13 +60,13 @@ const PayrollDeatails = ({ nextHandler, backHandler }) => {
             return (
                 <Form>
                     <div>
-                        <div className="panel px-0 flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
+                        <div className="">
                             <div className="flex justify-between flex-wrap px-4">
-                                <div className="mb-6 lg:w-1/2 w-full">
+                                {/* <div className="mb-6 lg:w-1/2 w-full">
                                     <div className="text-primary text-xl font-bold"> Payroll </div>
-                                </div>
+                                </div> */}
                             </div>
-                            <hr className="border-white-light dark:border-[#1b2e4b] my-6" />
+                            <hr className="border-white-light dark:border-[#1b2e4b]" />
                             <div className="mt-8 px-4">
                                 <div className="flex justify-between lg:flex-row flex-col">
                                     <div className=" w-full ltr:lg:mr-6 rtl:lg:ml-6 mb-6">
@@ -131,14 +142,14 @@ const PayrollDeatails = ({ nextHandler, backHandler }) => {
                                 </div>
                             </div>
 
-                            <hr className="border-white-light dark:border-[#1b2e4b] my-6" />
+                            {/* <hr className="border-white-light dark:border-[#1b2e4b] my-6" /> */}
                         </div>
                         <div className="flex justify-between mt-10 px-10">
-                            <button type="button" className={`btn btn-primary`} onClick={backHandler}>
+                            <button type="button" className={`btn btn-primary`} onClick={handleBackClick}>
                                 Back
                             </button>
                             <button type="submit" className="btn btn-primary ltr:ml-auto rtl:mr-auto">
-                                {'Next'}
+                                Next
                             </button>
                         </div>
                     </div>

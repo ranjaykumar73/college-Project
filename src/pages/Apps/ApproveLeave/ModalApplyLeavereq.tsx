@@ -19,7 +19,7 @@
                         <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                             <div className="fixed inset-0" />
                         </Transition.Child>
-                        <div className="fixed inset-0 z-[999] bg-[black]/60">
+                        <div className="fixed inset-0 overflow-y-auto z-[999] bg-[black]/60">
                             <div className="flex min-h-screen items-start justify-center px-4">
                                 <Transition.Child
                                     as={Fragment}
@@ -32,8 +32,8 @@
                                 >
                                     <Dialog.Panel className="panel my-8 w-full max-w-5xl overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
                                         <div className="flex items-center justify-between bg-[#fbfbfb] px-5 py-3 dark:bg-[#121c2c]">
-                                            <h5 className="text-lg font-bold">Apply Leave Request</h5>
-                                            <button onClick={() => setModal5(false)} type="button" className="text-white-dark hover:text-dark">
+                                            <h5 className="text-lg font-bold">Approve Leave Request</h5>
+                                            <button onClick={() => setModal5(false)} type="button" className="text-white-dark hover:text-dark transition duration-300 transform hover:rotate-90 focus:outline-none">
                                                 <IconX />
                                             </button>
                                         </div>

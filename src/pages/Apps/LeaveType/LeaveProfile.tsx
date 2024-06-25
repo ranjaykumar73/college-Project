@@ -3,10 +3,13 @@ import { useEffect, useState } from 'react';
 import sortBy from 'lodash/sortBy';
 import { downloadExcel } from 'react-export-table-to-excel';
 import { useDispatch } from 'react-redux';
-import { setPageTitle } from '../../store/themeConfigSlice';
-import IconBell from '../../components/Icon/IconBell';
-import IconFile from '../../components/Icon/IconFile';
-import IconPrinter from '../../components/Icon/IconPrinter';
+import { setPageTitle } from '../../../store/themeConfigSlice';
+import IconFile from '../../../components/Icon/IconFile';
+import IconPrinter from '../../../components/Icon/IconPrinter';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import {  NavLink } from 'react-router-dom';
+import IconEye from '../../../components/Icon/IconEye';
 
 const rowData = [
     {
@@ -513,7 +516,7 @@ const rowData = [
 
 const col = ['id', 'firstName', 'lastName', 'company', 'age', 'dob', 'email', 'phone'];
 
-const Export = () => {
+const LeaveProfile = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Export Table'));
@@ -705,17 +708,29 @@ const Export = () => {
     };
     return (
         <div>
-            <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
-                <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
-                    <IconBell />
+            <div className="flex justify-evenly ">
+                <div className='bg-gray-200 py-2 px-2 rounded'>
+                    <div className='text-lg'>Medical Leave (20)</div>
+                    <div className='text-xs'>Used:15</div>
+                    <div className='text-xs'>Available:5</div>
                 </div>
-                <span className="ltr:mr-3 rtl:ml-3">Documentation: </span>
-                <a href="https://www.npmjs.com/package/mantine-datatable" target="_blank" className="block hover:underline">
-                    https://www.npmjs.com/package/mantine-datatable
-                </a>
+                <div className='bg-gray-200 py-2 px-2 rounded'>
+                <div className='text-lg'>Casual Leave (25)</div>
+                <div className='text-xs'>Used:16</div>
+                 <div className='text-xs'>Available:9</div>
+                </div>
+                <div className='bg-gray-200 py-2 px-2 rounded'>
+                    <div className='text-lg'>Maternity Leave (25)</div>
+                    <div className='text-xs'>Used:14</div>
+                    <div className='text-xs'>Available:11</div>
+                    </div>
+                {/* <div className='bg-gray-200 text-lg  py-2 px-2 rounded'>
+                <div>Total Deduction</div>
+                    <div>₹-123456876</div>
+                </div> */}
             </div>
 
-            <div className="panel mt-6">
+            <div className="mt-6">
                 <div className="flex md:items-center justify-between md:flex-row flex-col mb-4.5 gap-5">
                     <div className="flex items-center flex-wrap">
                         <button type="button" onClick={() => exportTable('csv')} className="btn btn-primary btn-sm m-1 ">
@@ -746,19 +761,45 @@ const Export = () => {
                         className="whitespace-nowrap table-hover"
                         records={recordsData}
                         columns={[
-                            { accessor: 'id', title: '#', sortable: true },
-                            { accessor: 'firstName', sortable: true },
-                            { accessor: 'lastName', sortable: true },
-                            { accessor: 'company', title: 'Company', sortable: true },
-                            { accessor: 'age', title: 'Age', sortable: true },
+                            // {
+                            //     accessor: 'id',
+                            //     title: 'Payslip#',
+                            //     render: ({  id }) => (        
+                            //     <div className="text-primary underline hover:no-underline font-semibold">{`${id}`}</div>    
+                            //     ),
+                            //     sortable: true,
+                            // },
+                            // { accessor: 'Payslip', title: 'Payslip#', sortable: true },
+                            { accessor: 'firstName',title: 'Leave Type', sortable: true },
+                            { accessor: 'lastName',title: 'Leave-Date', sortable: true },
+                            { accessor: 'company', title: 'Days', sortable: true },
+                            { accessor: 'age', title: 'Apply-Date', sortable: true },
+                            { accessor: 'age', title: 'Status', sortable: true },
+                       
+
                             {
-                                accessor: 'dob',
-                                title: 'Start Date',
-                                sortable: true,
-                                render: ({ dob }) => <div>{formatDate(dob)}</div>,
+                                accessor: 'action',
+                                title: 'Actions',
+                                sortable: false,
+                                textAlignment: 'center',
+                                render: ({ id }) => (
+                                    <div className="flex gap-4 items-center w-max mx-auto">
+
+                                  
+                                           
+                                        <Tippy content="Preview">
+                                            <NavLink  className="flex hover:text-primary">
+                                                <IconEye />
+                                            </NavLink>
+                                        </Tippy>
+                                            
+                                
+
+                                        
+                                    </div>
+                                ),
                             },
-                            { accessor: 'email', sortable: true },
-                            { accessor: 'phone', sortable: true },
+                           
                         ]}
                         totalRecords={initialRecords.length}
                         recordsPerPage={pageSize}
@@ -777,4 +818,4 @@ const Export = () => {
     );
 };
 
-export default Export;
+export default LeaveProfile;

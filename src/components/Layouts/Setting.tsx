@@ -82,7 +82,7 @@ const Setting = () => {
                                 Collapsible
                             </button>
                         </div>
-                        <div className="mt-5 text-primary">
+                        {/* <div className="mt-5 text-primary">
                             <label className="inline-flex mb-0">
                                 <input
                                     type="checkbox"
@@ -92,7 +92,7 @@ const Setting = () => {
                                 />
                                 <span>Semi Dark (Sidebar & Header)</span>
                             </label>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="border border-dashed border-white-light dark:border-[#1b2e4b] rounded-md mb-3 p-3">
@@ -165,9 +165,9 @@ const Setting = () => {
                     </div>
 
                     <div className="border border-dashed border-white-light dark:border-[#1b2e4b] rounded-md mb-3 p-3">
-                        <h5 className="mb-1 text-base dark:text-white leading-none">Router Transition</h5>
+                        <h5 className="mb-1 text-base dark:text-white leading-none"></h5>
                         <p className="text-white-dark text-xs">Animation of main content.</p>
-                        <div className="mt-3">
+                        {/* <div className="mt-3">
                             <select className="form-select border-primary text-primary" value={themeConfig.animation} onChange={(e) => dispatch(toggleAnimation(e.target.value))}>
                                 <option value=" ">None</option>
                                 <option value="animate__fadeIn">Fade</option>
@@ -180,7 +180,7 @@ const Setting = () => {
                                 <option value="animate__slideInRight">Slide Right</option>
                                 <option value="animate__zoomIn">Zoom In</option>
                             </select>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </nav>
